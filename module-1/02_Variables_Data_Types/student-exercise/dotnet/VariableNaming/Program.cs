@@ -399,7 +399,7 @@ namespace VariableNaming
             */
             int numOfCroissants = 17;
             int numOfGuests = 7;
-            int croissantsPerGuest = numCroissants / numOfGuests;
+            int croissantsPerGuest = numOfCroissants / numOfGuests;
             /*
                 CHALLENGE PROBLEMS
             */
