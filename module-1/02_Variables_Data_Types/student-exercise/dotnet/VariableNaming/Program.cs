@@ -418,11 +418,14 @@ namespace VariableNaming
             double jillPaintsPerHour = 1 / jillsTimeToPaintRoom;
             double combinedPaintRate = billPaintsPerHour + jillPaintsPerHour;
             double feetPaintedPerHour = combinedPaintRate * feetInARoom;
-            int roomsToPaint = 623;
+            int roomsToPaint = 5;
             int feetToPaint = roomsToPaint * feetInARoom;
-            int hoursWorkedPerDay = 8;
             double hoursToWork = (double)feetToPaint / (double)feetPaintedPerHour;
-            int daysToWork = (int) Math.Ceiling( hoursToWork / hoursWorkedPerDay);
+            int roomsToPaintChallenge = 623;
+            int feetToPaintChallenge = roomsToPaintChallenge * feetInARoom;
+            int hoursWorkedPerDay = 8;
+            double hoursToWorkChallenge = (double)feetToPaintChallenge / (double)feetPaintedPerHour;
+            int daysToWork = (int) Math.Ceiling( hoursToWorkChallenge / hoursWorkedPerDay);
 
             //Console.WriteLine("feetInARoom: " + feetInARoom);
             //Console.WriteLine("billPaintsPerHour: " + billPaintsPerHour);
