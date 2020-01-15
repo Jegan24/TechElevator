@@ -16,7 +16,13 @@ namespace Exercises
          */
         public bool In1020(int a, int b)
         {
-            return false;
+            return (inRange(a) || inRange(b));
+            
+        }
+
+        public bool inRange(int number)
+        {
+            return (number >= 10 && number <= 20);
         }
 
     }

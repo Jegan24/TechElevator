@@ -19,7 +19,22 @@ namespace Exercises
          */
         public int CaughtSpeeding(int speed, bool isBirthday)
         {
-            return 0;
+            int output = 0;
+            if (isBirthday)
+            {
+                speed -= 5;
+            }
+
+            if(speed > 80)
+            {
+                output = 2;
+            }
+            else if (speed > 60)
+            {
+                output = 1;
+            }
+
+            return output;
         }
 
     }

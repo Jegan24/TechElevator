@@ -17,7 +17,51 @@ namespace Exercises
       */
         public int Max1020(int a, int b)
         {
-            return 0;
+            int output = 0;
+            bool isInRangeA = false;
+            bool isInRangeB = false;
+
+            if(!LessThan10(a) && !GreaterThan20(a))
+            {
+                isInRangeA = true;
+            }
+
+            if (!LessThan10(b) && !GreaterThan20(b))
+            {
+                isInRangeB = true;
+            }
+
+            if(isInRangeA && isInRangeB)
+            {
+                if(a > b && isInRangeA)
+                {
+                    output = a;
+                }
+                else
+                {
+                    output = b;
+                }
+            }
+            else if (isInRangeA)
+            {
+                output = a;
+            }
+            else if (isInRangeB)
+            {
+                output = b;
+            }
+
+            return output; 
+        }
+
+        public bool LessThan10(int number)
+        {
+            return (number < 10);
+        }
+
+        public bool GreaterThan20(int number)
+        {
+            return (number > 20);
         }
 
     }

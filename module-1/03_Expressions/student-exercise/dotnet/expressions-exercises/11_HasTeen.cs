@@ -17,7 +17,12 @@ namespace Exercises
         */
         public bool HasTeen(int a, int b, int c)
         {
-            return false;
+            return (inTeenRange(a) || inTeenRange(b) || inTeenRange(c));
+        }
+
+        public bool inTeenRange(int number)
+        {
+            return (number >= 13 && number <= 19);
         }
 
     }

@@ -20,7 +20,35 @@ namespace Exercises
          */
         public string AlarmClock(int day, bool vacation)
         {
-            return "";
+            string output = "";
+            bool isWeekend = false;
+            if(day == 0 || day == 6)
+            {
+                isWeekend = true;
+            }
+            if (vacation)
+            {
+                if(isWeekend)
+                {
+                    output = "off";
+                }
+                else
+                {
+                    output = "10:00";
+                }
+            }
+            else
+            {
+                if (isWeekend)
+                {
+                    output = "10:00";
+                }
+                else
+                {
+                    output = "7:00";
+                }
+            }
+            return output;
         }
 
     }

@@ -21,7 +21,21 @@ namespace Exercises
         */
         public int DateFashion(int you, int date)
         {
-            return 0;
+            int output = 0;
+
+            if(you > 2 && date > 2)
+            {
+                if(you >= 8 || date >= 8)
+                {
+                    output = 2;
+                }
+                else
+                {
+                    output = 1;
+                }
+            }
+
+            return output;
         }
 
     }

@@ -17,7 +17,29 @@ namespace Exercises
          */
         public bool In3050(int a, int b)
         {
-            return false;
+            bool output = false;
+
+            if(In3040(a) && In3040(b))
+            {
+                output = true;
+            }
+
+            if(In4050(a) && In4050(b))
+            {
+                output = true;
+            }
+
+            return output;
+        }
+
+        public bool In3040(int number)
+        {
+            return (number >= 30 && number <= 40);
+        }
+
+        public bool In4050(int number)
+        {
+            return (number >= 40 && number <= 50);
         }
 
     }

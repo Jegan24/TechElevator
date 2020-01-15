@@ -17,7 +17,7 @@ namespace Exercises
         */
         public bool LoneTeen(int a, int b)
         {
-            return false;
+            return (inTeenRange(a) ^ inTeenRange(b));
         }
 
     }

@@ -19,7 +19,22 @@ namespace Exercises
          */
         public bool CigarParty(int cigars, bool isWeekend)
         {
-            return false;
+            bool output = false;
+            if (isWeekend)
+            {
+               if(cigars >= 40)
+                {
+                    output = true;
+                }
+            }
+            else
+            {
+                if(cigars >= 40 && cigars <= 60)
+                {
+                    output = true;
+                }
+            }
+            return output;
         }
 
     }

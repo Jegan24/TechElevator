@@ -16,7 +16,12 @@ namespace Exercises
         */
         public int IntMax(int a, int b, int c)
         {
-            return 0;
+            List<int> numbers = new List<int>();
+            numbers.Add(a);
+            numbers.Add(b);
+            numbers.Add(c);
+
+            return numbers.Max();
         }
 
     }
