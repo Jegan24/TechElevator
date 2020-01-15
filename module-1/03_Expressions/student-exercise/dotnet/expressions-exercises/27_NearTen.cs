@@ -18,7 +18,18 @@ namespace Exercises
          */
         public bool NearTen(int num)
         {
-            return false;
+            bool output = false;
+
+            for(int i = -2; i < 3; i++)
+            {
+                if (IsMultipleOf(num + i, 10))
+                {
+                    output = true;
+                    break;
+                }                
+            }
+
+            return output;
         }
     }
 }

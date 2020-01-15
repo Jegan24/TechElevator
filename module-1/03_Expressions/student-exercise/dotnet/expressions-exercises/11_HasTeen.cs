@@ -17,10 +17,10 @@ namespace Exercises
         */
         public bool HasTeen(int a, int b, int c)
         {
-            return (inTeenRange(a) || inTeenRange(b) || inTeenRange(c));
+            return (isTeen(a) || isTeen(b) || isTeen(c));
         }
 
-        public bool inTeenRange(int number)
+        public bool isTeen(int number)
         {
             return (number >= 13 && number <= 19);
         }

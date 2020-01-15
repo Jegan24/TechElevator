@@ -17,8 +17,32 @@ namespace Exercises
          */
         public int LoneSum(int a, int b, int c)
         {
-            return 0;
+            int output = 0;
+            List<int> numbers = new List<int>();
+            if(a != b && a != c)
+            {
+                numbers.Add(a);
+            }
+            if(b != a && b != c)
+            {
+                numbers.Add(b);
+            }
+            if(c != a && c != b)
+            {
+                numbers.Add(c);
+            }
+
+            if(numbers.Count > 0)
+            {
+                foreach(int i in numbers)
+                {
+                    output += i;
+                }
+            }
+
+            return output;
         }
+
 
     }
 }

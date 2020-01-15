@@ -19,7 +19,12 @@ namespace Exercises
          */
         public int TeenSum(int a, int b)
         {
-            return 0;
+            int output = a + b;
+            if (isTeen(a) || isTeen(b))
+            {
+                output = 19;
+            }
+            return output;
         }
     }
 }

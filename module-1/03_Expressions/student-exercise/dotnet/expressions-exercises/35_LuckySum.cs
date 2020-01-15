@@ -20,7 +20,44 @@ namespace Exercises
          */
         public int LuckySum(int a, int b, int c)
         {
-            return 0;
+            int output = 0;
+            bool skipA = false;
+            bool skipB = false;
+            bool skipC = false;
+
+            if(a == 13)
+            {
+                skipA = true;
+                skipB = true;
+            }
+
+            if(b == 13)
+            {
+                skipB = true;
+                skipC = true;
+            }
+
+            if(c == 13)
+            {
+                skipC = true;
+            }
+
+            if (!skipA)
+            {
+                output += a;
+            }
+
+            if (!skipB)
+            {
+                output += b;
+            }
+
+            if (!skipC)
+            {
+                output += c;
+            }
+
+            return output;
         }
     }
 }

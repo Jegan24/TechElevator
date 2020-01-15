@@ -18,7 +18,12 @@ namespace Exercises
          */
         public bool Less20(int n)
         {
-            return false;
+            bool output = false;
+            if(IsMultipleOf(n+1, 20) || IsMultipleOf(n + 2, 20))
+            {
+                output = true;
+            }
+            return output;
         }
 
     }
