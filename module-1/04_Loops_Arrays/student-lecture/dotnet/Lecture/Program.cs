@@ -6,8 +6,11 @@ namespace Lecture
     {
         static void Main(string[] args)
         {
-               //1. Use a for-loop to print "Hello World" 10 times
-
+           //1. Use a for-loop to print "Hello World" 10 times
+           for(int i = 0; i < 10; i++)
+            {
+                Console.WriteLine("Hello Wolrd");
+            }
 
 
 

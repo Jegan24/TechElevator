@@ -37,7 +37,7 @@ namespace Arrays
             int lengthOfNamesArray = names.Length;
             Console.WriteLine("There are " + lengthOfNamesArray + " items in names array");
 
-            Console.WriteLine("There are " + letters.Length + " items in names array");
+            Console.WriteLine("There are " + letters.Length + " items in letters array");
 
             //7. Get the last index 
             //Console.WriteLine("The last index is " + quizScores.Length - 1); doesn't compile why??

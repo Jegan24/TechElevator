@@ -17,7 +17,8 @@ namespace Exercises
          */
         public bool FirstLast6(int[] nums)
         {
-            return false;
+
+            return (nums[0] == 6 || nums[nums.Length-1] == 6);
         }
     }
 }
