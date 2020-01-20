@@ -16,7 +16,12 @@ namespace Exercises
          */
         public string StringTimes(string str, int n)
         {
-            return null;
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i < n; i++)
+            {
+                sb.Append(str);
+            }
+            return sb.ToString();
         }
     }
 }

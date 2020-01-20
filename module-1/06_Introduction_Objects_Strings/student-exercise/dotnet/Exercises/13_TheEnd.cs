@@ -17,7 +17,16 @@ namespace Exercises
         */
         public string TheEnd(string str, bool front)
         {
-            return null;
+            string output;
+            if (front)
+            {
+                output = str.Substring(0, 1);
+            }
+            else
+            {
+                output = str.Substring(str.Length - 1);
+            }
+            return output;
         }
     }
 }

@@ -14,10 +14,14 @@ namespace Exercises
          MiddleThree("Candy") → "and"
          MiddleThree("and") → "and"
          MiddleThree("solving") → "lvi"
+
+            01234
+            -123-
+
          */
         public string MiddleThree(string str)
         {
-            return null;
+            return str.Length > 3 ? str.Substring(((str.Length - 1) / 2) - 1, 3) : str;
         }
     }
 }

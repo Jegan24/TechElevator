@@ -17,8 +17,8 @@ namespace Exercises
          FirstTwo("ab") → "ab"
          */
         public string FirstTwo(string str)
-        {
-            return null;
+        {            
+            return str.Length < 2 ? str : str.Substring(0, 2);
         }
     }
 }

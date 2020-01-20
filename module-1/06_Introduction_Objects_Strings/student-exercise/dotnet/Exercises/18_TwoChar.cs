@@ -17,8 +17,8 @@ namespace Exercises
          TwoChar("java", 3) → "ja"
          */
         public string TwoChar(string str, int index)
-        {
-            return null;
+        {            
+            return index + 2 <= str.Length && index >= 0 ? str.Substring(index, 2) : str.Substring(0, 2);
         }
     }
 }

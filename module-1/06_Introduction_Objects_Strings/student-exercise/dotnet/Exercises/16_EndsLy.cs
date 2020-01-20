@@ -16,7 +16,7 @@ namespace Exercises
          */
         public bool EndsLy(string str)
         {
-            return false;
+            return str.Length >= 2 ? str.ToUpper().Substring(str.Length-2).Equals("LY") : false;
         }
     }
 }
