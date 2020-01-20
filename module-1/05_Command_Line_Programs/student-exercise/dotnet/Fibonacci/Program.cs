@@ -26,13 +26,17 @@ namespace Fibonacci
 
             for(int i =0; i < fibNumbers.Count; i++)
             {
+                if(i % 10 == 0)
+                {
+                    sb.Append("\n");
+                }
                 sb.Append(fibNumbers[i]);
                 if(!(i+1 == fibNumbers.Count))
                 {
                     sb.Append(", ");
                 }
             }
-
+            
             Console.WriteLine(sb.ToString());
 
         }
