@@ -17,7 +17,8 @@ namespace Exercises
          */
         public List<string> No4LetterWords(string[] stringArray)
         {
-            return null;
+            List<string> output = new List<string>(stringArray);
+            return output.FindAll(match => match.Length != 4);
         }
 
     }

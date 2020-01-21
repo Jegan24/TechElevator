@@ -16,7 +16,8 @@ namespace Exercises
          */
         public List<int> OddOnly(int[] integerArray)
         {
-            return null;
+            List<int> output = new List<int>(integerArray);            
+            return output.FindAll(match => match % 2 != 0);
         }
 
     }

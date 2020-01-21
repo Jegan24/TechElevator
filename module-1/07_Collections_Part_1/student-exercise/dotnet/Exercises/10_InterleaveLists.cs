@@ -18,7 +18,21 @@ namespace Exercises
          */
         public List<int> InterleaveLists(List<int> listOne, List<int> listTwo)
         {
-            return null;
+            Queue<int> output = new Queue<int>();
+            int upperBound = (listOne.Count >= listTwo.Count) ? listOne.Count : listTwo.Count;
+
+            for(int i = 0; i < upperBound; i++)
+            {
+                if (i < listOne.Count)
+                {
+                    output.Enqueue(listOne[i]);
+                }
+                if (i < listTwo.Count)
+                {
+                    output.Enqueue(listTwo[i]);
+                }
+            }
+            return output.ToList();
         }
     }
 }

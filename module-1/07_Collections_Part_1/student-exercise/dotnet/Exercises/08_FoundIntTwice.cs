@@ -16,8 +16,8 @@ namespace Exercises
          FoundIntTwice( [9, 23, 44, 2, 88, 44], 44) -> true
          */
         public bool FoundIntTwice(List<int> integerList, int intToFind)
-        {
-            return false;
+        {            
+            return integerList.FindAll(match => match == intToFind).Count >= 2;
         }
 
     }

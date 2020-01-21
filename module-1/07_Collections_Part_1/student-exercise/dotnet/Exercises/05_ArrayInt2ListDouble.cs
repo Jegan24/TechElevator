@@ -16,7 +16,12 @@ namespace Exercises
          */
         public List<double> ArrayInt2ListDouble(int[] intArray)
         {
-            return null;
+            List<double> output = new List<double>();
+            foreach(int number in intArray)
+            {
+                output.Add((double)number / 2.0);
+            }
+            return output;
         }
 
     }
