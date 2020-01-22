@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Exercises
 {
@@ -38,7 +39,21 @@ namespace Exercises
          */
         public string AnimalGroupName(string animalName)
         {
-            return null;
+            Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+            TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
+            string s = myTI.ToTitleCase(animalName);
+            keyValuePairs.Add("Rhino", "Crash");
+            keyValuePairs.Add("Giraffe", "Tower");
+            keyValuePairs.Add("Elephant", "Herd");
+            keyValuePairs.Add("Lion", "Pride");
+            keyValuePairs.Add("Crow", "Murder");
+            keyValuePairs.Add("Pigeon", "Kit");
+            keyValuePairs.Add("Flamingo", "Pat");
+            keyValuePairs.Add("Deer", "Herd");
+            keyValuePairs.Add("Dog", "Pack");
+            keyValuePairs.Add("Crocodile", "Float");
+
+            return keyValuePairs.ContainsKey(s) ? keyValuePairs[s] : "unknown";            
         }
     }
 }

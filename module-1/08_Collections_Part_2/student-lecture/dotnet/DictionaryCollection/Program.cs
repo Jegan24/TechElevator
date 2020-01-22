@@ -18,6 +18,11 @@ namespace DictionaryCollection
             //      | "Bob"     | 72 |
             //      | "John"    | 75 |
             //      | "Jack"    | 73 |
+            Dictionary<string, int> personHeight = new Dictionary<string, int>();
+            personHeight.Add("Josh", 70);
+            personHeight.Add("Bob", 72);
+            personHeight.Add("John", 75);
+            personHeight.Add("Jack", 77);
 
             while (input == "yes" || input == "y")
             {
@@ -37,13 +42,14 @@ namespace DictionaryCollection
                     // 3. Put the name and height into the dictionary
                     //      dictionaryVariable[key] = value;
                     //      OR dictionaryVariable.Add(key, value);
-
+                    personHeight.Add(name, height);
                 }
                 else
                 {
                     Console.WriteLine($"Overwriting {name} with new value.");
                     // 4. Overwrite the current key with a new value
                     //      dictionaryVariable[key] = value;
+                    personHeight[name] = height;
                 }
 
 
@@ -61,7 +67,14 @@ namespace DictionaryCollection
                 input = Console.ReadLine();
 
                 //5. Let's get a specific name from the dictionary
-
+                if (personHeight.ContainsKey(input))
+                {
+                    Console.WriteLine($"{input} is {personHeight[input]} inches tall");
+                }
+                else
+                {
+                    Console.WriteLine($"{input} was not found in the database.");
+                }
 
             }
             else if (input == "all")
@@ -70,7 +83,7 @@ namespace DictionaryCollection
                 Console.WriteLine(".... printing ...");
 
                 //6. Let's print each item in the dictionary
-
+                PrintDictionary(personHeight);
             }
 
             Console.WriteLine();
@@ -78,7 +91,13 @@ namespace DictionaryCollection
 
             //7. Let's get the average height of the people in the dictionary
 
+            int total = 0;
+            foreach(int height in personHeight.Values)
+            {
+                total += height;
+            }
 
+            Console.WriteLine($"The average height is {total / personHeight.Count} inches.");
 
             Console.ReadLine();
         }
@@ -87,6 +106,10 @@ namespace DictionaryCollection
         {
             // Looping through a dictionary involves using a foreach loop
             // to look at each item, which is a key-value pair
+            foreach (KeyValuePair<string, int> keyValuePair in database)
+            {
+                Console.WriteLine($"{keyValuePair.Key} is {keyValuePair.Value} inches tall");
+            }
         }
     }
 }

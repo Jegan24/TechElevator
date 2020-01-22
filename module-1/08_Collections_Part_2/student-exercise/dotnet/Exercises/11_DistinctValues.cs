@@ -16,7 +16,8 @@ namespace Exercises
          */
         public List<string> DistinctValues(List<string> stringList)
         {
-            return null;
+            HashSet<string> output = new HashSet<string>(stringList);
+            return output.ToList();
         }
 
     }

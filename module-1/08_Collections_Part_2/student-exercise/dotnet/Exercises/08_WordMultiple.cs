@@ -19,7 +19,13 @@ namespace Exercises
          */
         public Dictionary<string, bool> WordMultiple(string[] words)
         {
-            return null;
+            Dictionary<string, int> wordCount = WordCount(words);
+            Dictionary<string, bool> wordMeetsCondition = new Dictionary<string, bool>();
+            foreach(string word in wordCount.Keys)
+            {
+                wordMeetsCondition[word] = wordCount[word] >= 2;
+            }
+            return wordMeetsCondition;
         }
     }
 }
