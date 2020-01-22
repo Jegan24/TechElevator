@@ -18,10 +18,10 @@ namespace CollectionsLectureNotes
             //
 
             // Creating lists of integers
-
+            List<int> intList = new List<int>();
 
             // Creating lists of strings
-
+            List<string> stringList = new List<string>();
 
 
             /////////////////
@@ -35,8 +35,7 @@ namespace CollectionsLectureNotes
             /////////////////
             // ADDING ITEMS
             /////////////////
-
-            // Adding items one at a time to each list
+                        // Adding items one at a time to each list
 
 
             /////////////////
