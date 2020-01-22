@@ -52,7 +52,7 @@ namespace Exercises
             keyValuePairs.Add("Deer", "Herd");
             keyValuePairs.Add("Dog", "Pack");
             keyValuePairs.Add("Crocodile", "Float");
-
+            
             return keyValuePairs.ContainsKey(s) ? keyValuePairs[s] : "unknown";            
         }
     }
