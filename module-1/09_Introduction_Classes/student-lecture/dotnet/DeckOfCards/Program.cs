@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using DeckOfCards.Classes;
+using System.Linq;
 
 namespace DeckOfCards
 {
@@ -9,7 +11,7 @@ namespace DeckOfCards
         {
             // Let's store all of our cards in a list
             // CODE GOES HERE
-
+            List<Card> deckOfCards = new List<Card>();
 
             while (true)
             {
@@ -36,23 +38,30 @@ namespace DeckOfCards
                     bool isFaceUp = bool.Parse(Console.ReadLine());
 
                     // Create the card and add to the list
-                   
-
+                    Card newCard = new Card(suit, value, isFaceUp);
+                    deckOfCards.Add(newCard);
                     
                 }
                 else if (input == "2")
                 {
                     Console.WriteLine("Displaying all of the cards.");
-
                     // Loop through each of the cards
-                    
+                    foreach(Card card in deckOfCards)
+                    {
+                        Console.WriteLine(card);
+                    }
+                    Console.Write("\nPress enter to continue");
+                    Console.ReadLine();
                 }
                 else if (input == "3")
                 {
                     Console.WriteLine($"Flipping the cards.");
                     
                     // Loop through each of the cards and flip them
-                    
+                    foreach(Card card in deckOfCards)
+                    {
+                        card.Flip();
+                    }
                 }
                 else if (input == "Q")
                 {
@@ -60,7 +69,6 @@ namespace DeckOfCards
                 }
 
                 // Wait for user to press enter and clear screen.
-                Console.ReadLine();
                 Console.Clear();
             }
         }

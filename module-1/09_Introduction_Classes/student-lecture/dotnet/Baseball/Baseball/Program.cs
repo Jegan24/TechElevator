@@ -1,5 +1,7 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using System.Linq;
+using Baseball.Classes;
 namespace Baseball
 {
     class Program
@@ -23,83 +25,43 @@ namespace Baseball
             }
 
             //to do maybe - just save the batting average
-            string[] playerNames = new string[numPlayers];
-            int[] timesAtBat = new int[numPlayers];
-            int[] numHits = new int[numPlayers];
-            GetPlayerData(numPlayers, playerNames, timesAtBat, numHits);
-            for (int i = 0; i < numPlayers; i++)
+            List<BaseballPlayer> team = new List<BaseballPlayer>();
+            while (team.Count < numPlayers)
             {
-                Console.WriteLine(playerNames[i] + " " + FormatBattingAverage(numHits[i], timesAtBat[i]));
+                team.Add(GetIndividualPlayerData());                              
             }
-            Console.WriteLine("Player with best average: "+FindBestBattingAverage( playerNames, timesAtBat, numHits));
+            foreach(BaseballPlayer player in team)
+            {
+                Console.WriteLine($"{player.FirstName} has a batting average of: {player.FormattedBattingAverage}");
+            }
 
-            //for fun let's test the string.split
-            string[] ar = "this|is|a test".Split("|");
-            for(int i=0; i < ar.Length; i++)
-            {
-                Console.WriteLine("at index " + i + " " + ar[i]);
-            }
+
+            // find the player with the batting average equal to the max batting average in team
+            BaseballPlayer bestBA = team.Find(player => player.BattingAverage == team.Max(match => match.BattingAverage));
+            Console.WriteLine($"Player with best average: {bestBA.FirstName} with an average of: {bestBA.FormattedBattingAverage}");
+
         }
 
-        private static string FindBestBattingAverage( string[] playerNames, int[] timesAtBat, int[] numHits)
+        private static BaseballPlayer GetIndividualPlayerData()
         {
-            string playerNameWithBestAverage = "nobody";
-            double bestAverage = 0;
-            for (int i = 0; i < numHits.Length; i++)
-            {
-                if ((double)numHits[i] / timesAtBat[i] > bestAverage)
-                {
-                    playerNameWithBestAverage = playerNames[i];
-                    bestAverage = (double)numHits[i] / timesAtBat[i];
-                }
+            BaseballPlayer newPlayer = new BaseballPlayer();
 
-            }
-            return playerNameWithBestAverage;
+            Console.WriteLine("Enter player name: ");
+            newPlayer.FirstName = Console.ReadLine();
+            int numberOfHits = int.MaxValue;
+            do
+            {
+                Console.WriteLine($"Enter number times {newPlayer.FirstName} has been at bat: ");
+                newPlayer.TimesAtBat = int.Parse(Console.ReadLine());
+
+                Console.WriteLine($"Enter number of times {newPlayer.FirstName} has hit: ");
+                numberOfHits = int.Parse(Console.ReadLine());
+            } while (numberOfHits > newPlayer.TimesAtBat && numberOfHits >= 0);
+
+            newPlayer.NumHits = numberOfHits;
+
+            return newPlayer;
         }
-
-        private static void GetPlayerData(int numPlayers, string[] playerNames, int[] timesAtBat, int[] numHits)
-        {
-            for (int i = 0; i < numPlayers; i++)
-            {
-                Console.WriteLine("Enter player name: ");
-                playerNames[i] = Console.ReadLine();
-                int numberOfHits = 0;
-               do
-                {
-                    Console.WriteLine("Times at bat must be less than number of hits.");
-
-                    Console.WriteLine("Enter times " + playerNames[i] + " has been at bat: ");
-                    string strTimesAtBat = Console.ReadLine();
-                    timesAtBat[i] = int.Parse(strTimesAtBat);
-                    numberOfHits = timesAtBat[i] + 1;
-
-                    Console.WriteLine("Enter number of hits: ");
-                    string strNumHits = Console.ReadLine();                 
-                    numberOfHits = int.Parse(strNumHits);              
-                    
-                }
-                while   (numberOfHits > timesAtBat[i]) ;
-                
-                numHits[i] = numberOfHits;
-            }
-        }
-
-        public static string FormatBattingAverage(int numHits, int timesAtBat)
-        {
-            
-            double battingAverage = (double) numHits / timesAtBat;
-            string strBA = "" + battingAverage;
-            if (battingAverage < 1) //don't change 1 to 1000
-            {
-                strBA += "00000";//this will handle if it's .1 so we can get the substrign
-            }
-            else
-            {
-                strBA += ".000";
-            }
-
-            string toReturn = strBA.Substring(0, 5);
-            return toReturn; 
-        }
+        
     }
 }
