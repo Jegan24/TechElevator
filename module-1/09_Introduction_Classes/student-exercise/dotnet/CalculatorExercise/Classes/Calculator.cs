@@ -33,7 +33,7 @@ namespace TechElevator.Classes
 
         public int Power(int exponent)
         {
-            Result = (int)Math.Pow(Result, exponent);
+            Result = (int)Math.Pow(Result, (int)Math.Abs(exponent));
             return Result;
         }
 
