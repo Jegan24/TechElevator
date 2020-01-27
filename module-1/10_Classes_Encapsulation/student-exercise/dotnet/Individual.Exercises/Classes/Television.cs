@@ -17,13 +17,18 @@ namespace Individual.Exercises.Classes
         #region Constructors
         public Television()
         {
-            CurrentChannel = 3;
-            CurrentVolume = 2;
-            IsOn = false;
+            SetDefaultValues();
         }
         #endregion
 
         #region Methods
+
+        private void SetDefaultValues()
+        {
+            CurrentChannel = 3;
+            CurrentVolume = 2;
+            IsOn = false;
+        }
         public void TurnOff()
         {
             IsOn = false;
