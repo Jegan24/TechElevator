@@ -17,18 +17,24 @@ namespace TollBoothCalculator
             {
                 vehicles.Add(GetRandomVehicle());
             }
-            Console.WriteLine(String.Format("{0,-30} {1,-20} {2, -5}", "Vehicle", "Distance Traveled", "Toll $"));
+            //Console.WriteLine(String.Format("{0,-30} {1,-20} {2, -5}", "Vehicle", "Distance Traveled", "Toll $"));
             string line = "-";
             while (line.Length < 58)
             {
                 line += "-";
             }
-            Console.WriteLine(line);
+            //Console.WriteLine(line);
+            int counter = 0;
             foreach (IVehicle vehicle in vehicles)
             {
+                if (counter % 30 == 0)
+                {
+                    Console.WriteLine(line + "\n" + String.Format("{0,-30} {1,-20} {2, 6}", "Vehicle Type", "Distance Traveled", "  Toll" + "\n" + line));
+                }
                 milesTraveled += vehicle.DistanceTraveled;
                 tollBoothRevenue += vehicle.Toll;
                 Console.WriteLine(vehicle.GetFancyString());
+                counter++;
             }
             Console.WriteLine($"\nNumber of vehicles: {numberOfVehicles}\nTotal Miles Traveled: {milesTraveled}\nTotal Tollbooth Revenue: {tollBoothRevenue.ToString("C")}");
         }
@@ -102,7 +108,7 @@ namespace TollBoothCalculator
         public static int GetRandomInt(int min, int max)
         {
             Init();
-            return random.Next(min, max + 1); 
+            return random.Next(min, max + 1);
         }
     }
 }

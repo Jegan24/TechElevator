@@ -36,7 +36,7 @@ namespace TollBoothCalculator.Classes
 
         public string GetFancyString()
         {
-            return String.Format("{0,-30} {1,-20} {2, -5}", $"Truck ({NumberOfAxles} Axles)", DistanceTraveled, Toll.ToString("C"));
+            return String.Format("{0,-30} {1,-20} {2, 6}", $"Truck ({NumberOfAxles} Axles)", DistanceTraveled, Toll.ToString("C"));
         }
     }
 }

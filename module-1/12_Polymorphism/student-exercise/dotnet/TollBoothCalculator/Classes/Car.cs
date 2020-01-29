@@ -25,7 +25,7 @@ namespace TollBoothCalculator.Classes
         {
             string name = "Car" + (HasTrailer ? " (With Trailer)" : "");
 
-            return String.Format("{0,-30} {1,-20} {2, -5}", name, DistanceTraveled, Toll.ToString("C"));
+            return String.Format("{0,-30} {1,-20} {2, 6}", name, DistanceTraveled, Toll.ToString("C"));
         }
     }
 }
