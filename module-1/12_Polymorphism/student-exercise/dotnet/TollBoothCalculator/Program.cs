@@ -9,22 +9,22 @@ namespace TollBoothCalculator
     {
         static void Main(string[] args)
         {
-            int numberOfVehicles = IntUtil.Random(16, 255);
+            int numberOfVehicles = RNG.GetRandomInt(100, 1000);
             int milesTraveled = 0;
             double tollBoothRevenue = 0;
             List<IVehicle> vehicles = new List<IVehicle>();
-            while(vehicles.Count < numberOfVehicles || vehicles.FindAll(match => match is Tank).Count < 1 || vehicles.FindAll(match => match is Car).Count < 1 || vehicles.FindAll(match => match is Truck).Count < 1)
+            while (vehicles.Count < numberOfVehicles || vehicles.FindAll(match => match is Tank).Count < 1 || vehicles.FindAll(match => match is Car).Count < 1 || vehicles.FindAll(match => match is Truck).Count < 1)
             {
                 vehicles.Add(GetRandomVehicle());
             }
             Console.WriteLine(String.Format("{0,-30} {1,-20} {2, -5}", "Vehicle", "Distance Traveled", "Toll $"));
             string line = "-";
-            while(line.Length < 58)
+            while (line.Length < 58)
             {
                 line += "-";
             }
             Console.WriteLine(line);
-            foreach(IVehicle vehicle in vehicles)
+            foreach (IVehicle vehicle in vehicles)
             {
                 milesTraveled += vehicle.DistanceTraveled;
                 tollBoothRevenue += vehicle.Toll;
@@ -37,13 +37,13 @@ namespace TollBoothCalculator
         {
             IVehicle vehicle;
 
-            int vehicleTypeRoll = IntUtil.Random(0, 10);
+            int vehicleTypeRoll = RNG.GetRandomInt(1, 10);
 
-            if (vehicleTypeRoll >= 9)
+            if (vehicleTypeRoll == 10)
             {
                 vehicle = new Tank();
             }
-            else if (vehicleTypeRoll > 5)
+            else if (vehicleTypeRoll > 6)
             {
                 vehicle = GetTruck();
             }
@@ -57,7 +57,7 @@ namespace TollBoothCalculator
 
         public static Truck GetTruck()
         {
-            int axelCountRoll = IntUtil.Random(1, 3);
+            int axelCountRoll = RNG.GetRandomInt(1, 3);
             Truck truck = null;
             switch (axelCountRoll)
             {
@@ -78,19 +78,19 @@ namespace TollBoothCalculator
 
         public static Car GetCar()
         {
-            int coinFlip = IntUtil.Random(1, 100);
-            return new Car(coinFlip % 2 == 0);
+            int coinFlip = RNG.GetRandomInt(1, 100);
+            return new Car(coinFlip % 10 == 0);
         }
 
         public static void TravelVehicle(IVehicle vehicle)
         {
-            int distance = IntUtil.Random(10, 240);
+            int distance = RNG.GetRandomInt(10, 240);
             vehicle.CalculateToll(distance);
-        }            
-            
+        }
+
     }
 
-    public static class IntUtil
+    public static class RNG
     {
         private static Random random;
 
@@ -99,10 +99,10 @@ namespace TollBoothCalculator
             if (random == null) random = new Random();
         }
 
-        public static int Random(int min, int max)
+        public static int GetRandomInt(int min, int max)
         {
             Init();
-            return random.Next(min, max+1);
+            return random.Next(min, max + 1); 
         }
     }
 }
