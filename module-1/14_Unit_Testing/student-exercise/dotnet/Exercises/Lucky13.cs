@@ -16,6 +16,10 @@ namespace Exercises
          */
         public bool GetLucky(int[] nums)
         {
+            if(nums == null || nums.Length == 0)
+            {
+                return false;
+            }
             for (int i = 0; i < nums.Length; i++)
             {
                 if (nums[i] == 1 || nums[i] == 3)

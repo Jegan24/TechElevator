@@ -22,6 +22,10 @@ namespace Exercises
          */
         public Dictionary<string, int> GetCount(string[] words)
         {
+            if(words == null)
+            {
+                return null;
+            }
             Dictionary<string, int> output = new Dictionary<string, int>();
 
             foreach (string word in words)
