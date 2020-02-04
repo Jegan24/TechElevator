@@ -6,7 +6,6 @@ namespace file_io_part1_exercises
 {
     class QuizQuestion
     {
-        public static Random random = new Random();
         public string Question { get; }
         public Dictionary<int,string> Answers { get; private set; }
         public int CorrectAnswerNumber { get; }
