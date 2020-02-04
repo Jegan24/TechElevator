@@ -22,15 +22,18 @@ namespace WordSearch
             if (filePath.Length > 0)
             {
                 fileContents = ReadFile(filePath);
-                                                                                    // get the keyValuePairs where the value contains searchString, adjusts for case sensitivity with ternary 
-                foreach (KeyValuePair<int, string> keyValuePair in fileContents.Where(kvp => isCaseSensitive ? kvp.Value.Contains(searchString) :
-                                                                                                               kvp.Value.ToUpper().Contains(searchString.ToUpper())
-                                                                                                               ))                                                                                    
+                // get the keyValuePairs where the value contains searchString, adjusts for case sensitivity with ternary 
+                foreach (KeyValuePair<int, string> keyValuePair in fileContents
+                                                                                .Where(kvp =>
+                                                                                isCaseSensitive ? kvp.Value.Contains(searchString) :
+                                                                                kvp.Value.ToUpper().Contains(searchString.ToUpper())))
                 {
-                    if(isCaseSensitive ? keyValuePair.Value.Split(" ").Contains(searchString) : keyValuePair.Value.ToUpper().Split(" ").Contains(searchString.ToUpper())) // prevents partial matches ie: search word: who, match: whole
+                    // prevents partial matches ie: search word: who, match: whole
+                    if (isCaseSensitive ? keyValuePair.Value.Split(" ").Contains(searchString) :
+                        keyValuePair.Value.ToUpper().Split(" ").Contains(searchString.ToUpper())) 
                     {
                         linesToPrint.Add(keyValuePair.Key.ToString() + ") " + keyValuePair.Value);
-                    }                    
+                    }
                 }
                 foreach (string line in linesToPrint)
                 {
