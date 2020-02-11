@@ -209,7 +209,7 @@ AND gnp <= 100
 SELECT 'The per capita GNP (i.e. GNP divided by population) in US Dollars of all countries in Europe (46 rows)' AS 'Problem 21'
 SELECT
 	name,
-	(gnp / population) AS 'gnpPerCapita'
+	(gnp / population) * 1000000 AS 'gnpPerCapita'
 FROM
 	country
 WHERE
