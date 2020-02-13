@@ -1,12 +1,32 @@
+USE World
 -- INSERT
 
 -- 1. Add Klingon as a spoken language in the USA
+INSERT INTO countrylanguage(countrycode, language, isofficial, percentage)
+VALUES ('USA', 'Klingon', 1, 2.04)
+SELECT * FROM countrylanguage WHERE isofficial = 1 AND countrycode = 'USA'
 -- 2. Add Klingon as a spoken language in Great Britain
+--INSERT INTO countrylanguage(countrycode, language, isofficial, percentage)
 
 
 -- UPDATE
 
 -- 1. Update the capital of the USA to Houston
+UPDATE country
+SET
+	capital = c.id
+FROM
+(
+SELECT
+	id
+FROM
+	city
+WHERE
+	city.name = 'Houston') AS c
+WHERE 
+	code = 'USA'
+
+SELECT * FROM country JOIN city ON country.capital = city.id WHERE code = 'USA'
 -- 2. Update the capital of the USA to Washington DC and the head of state
 
 
