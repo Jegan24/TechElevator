@@ -102,3 +102,15 @@ VALUES							(1,1),
 								(3,6),
 								(4,7),
 								(4,8);
+
+
+SELECT
+	*
+FROM
+	employees
+	JOIN departments
+	ON employees.department_id = departments.department_id
+	JOIN project_employees
+		JOIN projects
+		ON project_employees.project_id = projects.project_id
+	ON employees.employee_id = project_employees.employee_id
