@@ -1,0 +1,57 @@
+html {
+    height: 100%;
+    font-size: 16px;
+}
+
+* {
+    /*when i set the width for something, it includes padding and border*/
+   box-sizing: border-box; 
+   /* sanity check border: 2px solid red;*/
+}
+
+body {
+    /*change the default font*/
+    font-family: 'Raleway',sans-serif;
+
+    background-image: linear-gradient(to bottom, #858C90, #BBB);
+    /*don't repeat, stretch it*/
+    background-repeat: no-repeat;
+    /*don't scroll the background*/
+    background-attachment: fixed;
+}
+
+div.trello-list {
+    /*create multi-column layout*/
+    display: inline-block;
+    /*fixed width for all the lists*/
+    width: 300px;
+    background-color: #DDD;
+    /*rounded corners*/
+    border-radius: 2px 3px;
+
+    /*align the top of each list*/
+    vertical-align: top;;
+}
+
+div.trello-list h2 {
+    /*push it from the edge*/
+    margin: 8px;
+
+    /*keep font consistent with root*/
+    font-size: 1.0rem;
+    font-weight: bold;
+}
+
+div.trello-list ol {
+    margin: 0;
+    padding: 0;
+}
+
+div.trello-list li {
+    /*ditch the numbers*/
+    list-style: none;
+    /*white background*/
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 8px;
+}
