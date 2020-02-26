@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Greeting";
+    string name = "Katie";
+    string message = "happy birthday"; 
+}
+
+<!--html comment-->
+@* razor comment *@
+
+<h2>Greeting</h2>
+
+<p> @message  @name</p>
+
+<p> What time is it? @DateTime.Now</p>
+
+@for (int i=0; i<10; i++)
+{
+    <p> Hey @name</p>
+}
+
+ <a asp-controller="Home" asp-action="Index">Go HOme</a>

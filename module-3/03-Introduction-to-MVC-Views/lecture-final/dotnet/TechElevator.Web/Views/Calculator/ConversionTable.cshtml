@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Calculator";
+}
+
+<h2>Calculator</h2>
+
+<!-- show conversion of metric to imperial for 0 to 1000  km/h by 15-->
+<table>
+    <thead>
+        <tr>
+            <th> Metric </th>
+            <th> Imperial</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @for (int i=0; i<=1000; i+=15)
+        {
+            <tr>
+                <td> @i km/h</td>
+                <td> @((int)(i*0.62)) mph</td>
+            </tr>
+        }
+    </tbody>
+</table>
