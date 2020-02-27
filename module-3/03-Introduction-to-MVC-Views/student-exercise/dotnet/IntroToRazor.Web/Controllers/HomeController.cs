@@ -22,7 +22,7 @@ namespace IntroToRazor.Web.Controllers
         {
             ViewData["number"] = number;
 
-            return View();
+            return View("FizzBuzz");
         }
 
         // home/fibonacci (defaults to 20)
@@ -31,7 +31,7 @@ namespace IntroToRazor.Web.Controllers
         {
             ViewData["max"] = max;
 
-            return View();
+            return View("Fibonacci");
         }
 
         // home/echo?word=hello world&count=20
@@ -41,7 +41,7 @@ namespace IntroToRazor.Web.Controllers
             ViewData["word"] = word;
             ViewData["count"] = count;
 
-            return View();
+            return View("Echo");
         }
 
 

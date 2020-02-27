@@ -4,8 +4,16 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewData["Title"]</title>
+    <link type="text/css" rel="stylesheet" href="~/css/style.css" />
 </head>
-<body>    
+<body>
+    <nav>
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Index</a></li>
+            <li><a asp-controller="Home" asp-action="Greeting">Greeting</a></li>
+            <li><a asp-controller="Calculator" asp-action="ConversionTable">Calculator</a></li>
+        </ul>
+    </nav>
     @RenderBody()
 </body>
 </html>

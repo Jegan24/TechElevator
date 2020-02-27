@@ -1,5 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Fibonacci";
+    int max = (int)ViewData["max"];
+    int next = 2;
+    int current = 1;
+    int previous = 1;
 }
 
 <nav id="page-options">
@@ -10,6 +14,16 @@
     </ul>
 </nav>
 
-@*
-    REPLACE THIS COMMENT SECTION WITH YOUR UNORDERED LIST
-*@
+<ul id="fibonacci">
+    @while ((current + previous) < max)
+    {
+        <li>@current.ToString()</li>
+        next = current + previous;
+        previous = current;
+        current = next;
+    }
+    @if(next < max)
+    {
+        <li>@next</li>
+    }
+</ul>

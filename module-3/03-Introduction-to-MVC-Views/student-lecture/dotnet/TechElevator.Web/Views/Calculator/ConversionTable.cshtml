@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Calculator";
+}
+
+<h2>Calculator</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Metric</th>
+            <th>Imperial</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i <= 1000; i += 5)
+        {
+            <tr>
+                <td class="conversion-table-km">@i.ToString() km/h</td>
+                <td class="conversion-table-mph">@Convert.ToDecimal(i * .62).ToString() mp/h</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

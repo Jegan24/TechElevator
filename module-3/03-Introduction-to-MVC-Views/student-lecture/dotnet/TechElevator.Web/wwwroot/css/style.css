@@ -1,1 +1,7 @@
-﻿
+﻿.conversion-table-km {
+    border: solid green;
+}
+
+.conversion-table-mph{
+    border: solid red;
+}

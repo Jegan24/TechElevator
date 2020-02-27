@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "Greeting";
+    string name = "Katie";
+    DateTime birthday = new DateTime(DateTime.Now.Year, 2, 26);
+    bool isBirthday = DateTime.Now.Date == birthday;
+    string message = isBirthday ? "Happy Birthday" : "Hello";
+}
+
+<h2>@message @name</h2>
+
+<p>It is @DateTime.Now.ToShortTimeString() @DateTime.Now.ToShortDateString()</p>
