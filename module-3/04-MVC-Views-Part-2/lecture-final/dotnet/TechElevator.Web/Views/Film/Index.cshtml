@@ -1,0 +1,29 @@
+﻿@model IList<Film>
+@{
+    ViewData["Title"] = "Star Wars Films";
+}
+
+<h2>Here they are</h2>
+
+<div id="movies">
+    @foreach (var film in Model)
+    {
+    <div class="movie">
+        <a asp-controller="Film" asp-action="Detail" asp-route-id="@film.Id">
+            @film.Name
+         </a>
+        @if (String.IsNullOrEmpty(film.ImageUrl))
+        {
+            <a asp-controller="Film" asp-action="Detail" asp-route-id="@film.Id">
+                <img src="http://via.placeholder.com/768x400" />
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Film" asp-action="Detail" asp-route-id="@film.Id">
+                <img src="@film.ImageUrl" alt="No image" />
+            </a>
+        }
+    </div>
+    }
+</div>

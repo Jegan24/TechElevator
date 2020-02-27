@@ -1,0 +1,11 @@
+﻿@model Film
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h2>Detail</h2>
+
+<h1>@Model.Name</h1>
+<img src="@Model.ImageUrl" alt="No image" />
+<h2> Length: @Model.Length minutes</h2>
+<h2> Year Released: @Model.YearReleased</h2>

@@ -13,8 +13,9 @@ namespace TechElevator.Web.Controllers
             return View();
         }
 
-        public IActionResult Greeting()
+        public IActionResult Greeting(string name)
         {
+            ViewData["nameSentIn"] = name;
             return View(); 
         }
     }

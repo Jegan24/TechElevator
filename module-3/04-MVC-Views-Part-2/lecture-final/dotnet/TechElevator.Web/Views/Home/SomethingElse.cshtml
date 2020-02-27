@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "Something Else";
+    int num = Convert.ToInt32(ViewData["whateverIWant"]);
+}
+
+<h2>Something Else</h2>
+
+@{string pxString = "px";}
+<h1 style="font-size: @num@pxString"> you passed in @num</h1>
+
+<h1 style="font-size: @(num)px"> you passed in @num</h1>
+

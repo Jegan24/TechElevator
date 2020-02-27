@@ -10,8 +10,8 @@
     <nav>
         <ul>
             <li> <a asp-controller="Home" asp-action="Index">Just display value</a></li>
-            <li> <a asp-controller="Home" asp-action="Greeting">Greeting</a></li>
-            <li> <a asp-controller="Calculator" asp-action="ConversionTable">Calculator</a></li>
+            <li> <a asp-controller="Home" asp-action="Greeting" asp-route-name="Katie">Greeting</a></li>
+            <li> <a asp-controller="Calculator" asp-action="ConversionTable" asp-route-max="200">Calculator</a></li>
         </ul>
     </nav>
     @RenderBody()

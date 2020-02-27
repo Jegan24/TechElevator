@@ -8,8 +8,9 @@ namespace TechElevator.Web.Controllers
 {
     public class CalculatorController : Controller
     {
-        public IActionResult ConversionTable()
+        public IActionResult ConversionTable(int max)
         {
+            ViewData["max"] = max;
             return View();
         }
     }

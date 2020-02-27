@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a asp-controller="Home" asp-action="SomethingElse" asp-route-num=5>Link To Something Else</a></li>
+            <li><a asp-controller="Film" asp-action="Index">All the Star Wars Films</a></li>
+            <li><a asp-controller="Film" asp-action="Detail" asp-route-id="rogue-one">I only care about Rogue One</a></li>
+        </ul>
+    </nav>
+    @RenderBody()
+</body>
+</html>
