@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MVCModels.Web.Models
@@ -51,5 +52,36 @@ namespace MVCModels.Web.Models
         /// Description of the product
         /// </summary>
         public string Description { get; set; }
+
+        public string GetTileClass()
+        {
+            string cssClass = "";
+            if(RemainingStock < 1)
+            {
+                cssClass = "sold-out";
+            }
+            return cssClass;
+        }
+
+        public string GetStarClass(int star)
+        {
+            string starClass = "";
+            if(AverageRating >= star)
+            {
+                starClass = "filled";
+            }
+            return starClass;
+        }
+
+        public string GetTopSellerClass()
+        {
+            string s = "";
+            if (IsTopSeller)
+            {
+                s = "top-seller";
+            }
+
+            return s;
+        }
     }
 }

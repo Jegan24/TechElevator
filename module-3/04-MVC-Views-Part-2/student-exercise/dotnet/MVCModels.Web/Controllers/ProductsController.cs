@@ -22,6 +22,7 @@ namespace MVCModels.Web.Controllers
         public IActionResult Index(ProductFilter filter, ProductSortOrder sortOrder = ProductSortOrder.Default)
         {
             IList<Product> products = productDAO.GetAll(filter, sortOrder);
+            ViewData["products"] = products;
             return View(products);
         }
 
@@ -30,6 +31,7 @@ namespace MVCModels.Web.Controllers
         public IActionResult Tile(ProductFilter filter)
         {
             IList<Product> products = productDAO.GetAll(filter, ProductSortOrder.Default);
+            ViewData["products"] = products;
             return View(products);
         }
 
@@ -38,6 +40,7 @@ namespace MVCModels.Web.Controllers
         public IActionResult Detail(int id)
         {
             Product product = productDAO.GetById(id);
+            ViewData["product"] = product;
             return View(product);
         }
     }

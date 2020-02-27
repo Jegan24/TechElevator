@@ -1,35 +1,47 @@
 ﻿@model Product
 @{
     ViewData["Title"] = "Detail";
+    Product product = (Product)ViewData["product"];
 }
 <h2>Product Page</h2>
 
 <!-- Container for the Product -->
 <div id="product-detail">
-    <img src="/images/product-images/grey-sofa.jpg" />
+    <img src="/images/product-images/@(product.ImageName)" />
     <div class="product-description">
         <h3>
-            Grey Sofa
+            @product.Name
         </h3>
 
         <!-- .filled will make the star solid -->
         <div class="rating">
-            <span class="filled">&#9734;</span>
-            <span class="filled">&#9734;</span>
-            <span>&#9734;</span>
-            <span>&#9734;</span>
-            <span>&#9734;</span>
+            <span class="@product.GetStarClass(1)">&#9734;</span>
+            <span class="@product.GetStarClass(2)">&#9734;</span>
+            <span class="@product.GetStarClass(3)">&#9734;</span>
+            <span class="@product.GetStarClass(4)">&#9734;</span>
+            <span class="@product.GetStarClass(5)">&#9734;</span>
         </div>
+        @{
+            if (product.RemainingStock <= 5 && product.RemainingStock > 0)
+            {
+                <!-- Include this if the product has a Remaining Stock of 5 or less -->
+                <p class="alert-remaining">BUY NOW! Only @product left!</p>
 
-        <!-- Include this if the product has a Remaining Stock of 5 or less -->
-        <p class="alert-remaining">BUY NOW! Only 4 left!</p>
-        <p class="description">Large four seater grey sofa.</p>
-        <p class="price">$939.00</p>
+            }
+        }
+        <p class="description">@product.Description</p>
+        <p class="price">@product.Price.ToString("C")</p>
+        @{
+            if (product.RemainingStock > 0)
+            {
+                <button class="action">Add to Cart</button>
+            }
+            else
+            {
+                <button disabled>Sold Out</button>
+            }
+        }
 
-        <!-- If item is in stock -->
-        <button class="action">Add to Cart</button>
-        <!-- OR if item is out of stock -->
-        <!--<button disabled>Sold Out</button>-->
 
     </div>
 </div>
