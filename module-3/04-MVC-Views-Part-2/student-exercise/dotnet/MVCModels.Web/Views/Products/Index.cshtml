@@ -1,6 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Index";
-    List<Product> products = new List<Product>((IList<Product>)ViewData["products"]);
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "👀👀👀";
+    IEnumerable<Product> products = Model;    
 }
 
 <h2>All Products</h2>
@@ -8,8 +9,9 @@
 <div id="card-page">
 
     @{
-        ViewData["Action"] = "";
-        ViewData["Controller"] = "";
+        ViewData["Action"] = "Index";
+        ViewData["Controller"] = "Products";
+        ProductFilter filter = (ProductFilter)ViewData["filter"];
     }
     <partial name="_Filters" />
 
@@ -23,9 +25,10 @@
         <div id="sorting-options">
             <h3>Sort By</h3>
             <ul>
-                <li><a asp-controller="Products" asp-route-sortOrder="PriceLowToHigh">Price - Low to High</a></li>
-                <li><a asp-controller="Products" asp-route-sortOrder="PriceHighToLow">Price - High to Low</a></li>
-                <li><a asp-controller="Products" asp-route-sortOrder="RatingHighToLow">Rating - High to Low</a></li>
+                <li><a asp-controller="Products" asp-route-minPrice="@filter.MinPrice" asp-route-maxPrice="@filter.MaxPrice" asp-route-minRating="@filter.MinRating" asp-route-category="@filter.Category" asp-route-sortOrder="Default">Default</a></li>
+                <li><a asp-controller="Products" asp-route-minPrice="@filter.MinPrice" asp-route-maxPrice="@filter.MaxPrice" asp-route-minRating="@filter.MinRating" asp-route-category="@filter.Category" asp-route-sortOrder="PriceLowToHigh">Price - Low to High</a></li>
+                <li><a asp-controller="Products" asp-route-minPrice="@filter.MinPrice" asp-route-maxPrice="@filter.MaxPrice" asp-route-minRating="@filter.MinRating" asp-route-category="@filter.Category" asp-route-sortOrder="PriceHighToLow">Price - High to Low</a></li>
+                <li><a asp-controller="Products" asp-route-minPrice="@filter.MinPrice" asp-route-maxPrice="@filter.MaxPrice" asp-route-minRating="@filter.MinRating" asp-route-category="@filter.Category" asp-route-sortOrder="RatingHighToLow">Rating - High to Low</a></li>
             </ul>
         </div>
 
@@ -35,13 +38,18 @@
                  could be rendered based on different rules. For purposes
                  of demonstration we've written it out so you can see it
                  when you load the page up. -->
-            @foreach (Product product in products)
+            @foreach (Product product in Model)
             {
             <div class="tile @product.GetTileClass()">
-
-      <!-- Link to the Detail page using the product id (e.g. Products/Detail/1) -->
+                @{
+                    if (product.IsTopSeller)
+                    {
+                        <span class="banner top-seller">Top Seller!</span>
+                    }
+                }
+                <!-- Link to the Detail page using the product id (e.g. Products/Detail/1) -->
                 <a class="product-image" asp-controller="Products" asp-route-id="@product.Id" asp-action="Detail">
-                    <img src="/images/product-images/@(product.ImageName)" /> 
+                    <img src="/images/product-images/@(product.ImageName)" />
                 </a>
                 <div class="details">
                     <p class="name">@product.Name</p>
@@ -54,16 +62,16 @@
                         <span class="@product.GetStarClass(4)">&#9734;</span>
                         <span class="@product.GetStarClass(5)">&#9734;</span>
                     </div>
-
-                    <p class="price">@product.Price.ToString("C")</p>
-
                     @{
                         if (product.RemainingStock <= 5 && product.RemainingStock > 0)
                         {
                             <span class="product-alert">Only @product.RemainingStock left!</span>
-                            <p class="price">$939.00</p>
+
                         }
                     }
+                    <p class="price">@product.Price.ToString("C")</p>
+
+
                 </div>
             </div>
             }

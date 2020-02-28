@@ -1,7 +1,7 @@
 ﻿@model Product
 @{
     ViewData["Title"] = "Detail";
-    Product product = (Product)ViewData["product"];
+    Product product = Model;
 }
 <h2>Product Page</h2>
 
@@ -25,7 +25,7 @@
             if (product.RemainingStock <= 5 && product.RemainingStock > 0)
             {
                 <!-- Include this if the product has a Remaining Stock of 5 or less -->
-                <p class="alert-remaining">BUY NOW! Only @product left!</p>
+                <p class="alert-remaining">BUY NOW! Only @product.RemainingStock left!</p>
 
             }
         }

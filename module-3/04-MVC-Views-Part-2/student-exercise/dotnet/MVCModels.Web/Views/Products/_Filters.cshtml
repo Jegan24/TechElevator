@@ -10,26 +10,53 @@
         dictionary. These will be necessary when generating the links for the appropriate pages on the view.
         You can access these values with the @ViewData["Action"] or @ViewData["Controller"] syntax.
         -->
-    <div id="filter-options">
-        <h3>Refine By</h3>
-        <p>Price</p>
-        <ul>
-            <li><a href="#">Under $25</a></li>
-            <li><a href="#">$25 to $50</a></li>
-            <li><a href="#">$50 & Above</a></li>
-        </ul>
-        <p>Avg. Review</p>
-        <ul>
-            <li><a class="rating" href="#"><span class="filled">&#9734;</span><span class="filled">&#9734;</span><span class="filled">&#9734;</span><span class="filled">&#9734;</span><span>&#9734;</span> & Up</a></li>
-            <li><a class="rating" href="#"><span class="filled">&#9734;</span><span class="filled">&#9734;</span><span class="filled">&#9734;</span><span>&#9734;</span><span>&#9734;</span> & Up</a></li>
-            <li><a class="rating" href="#"><span class="filled">&#9734;</span><span class="filled">&#9734;</span><span class="filled">&#9734;</span><span>&#9734;</span><span>&#9734;</span> & Up</a></li>
-            <li><a class="rating" href="#"><span class="filled">&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span> & Up</a></li>
-        </ul>
-        <p>Category</p>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Apparel</a></li>
-            <li><a href="#">Jewelry</a></li>
-            <li><a href="#">Garden</a></li>
-        </ul>
-    </div>
+@{ 
+    string action = (string)ViewData["Action"];
+    string controller = (string)ViewData["Controller"];
+    ProductFilter filter;
+    ProductSortOrder sortOrder;
+    if (ViewData["Filter"] != null)
+    {
+        filter = (ProductFilter)ViewData["Filter"];
+    }
+    else
+    {
+        filter = new ProductFilter();
+    }
+
+    if(ViewData["SortOrder"] != null)
+    {
+        sortOrder = (ProductSortOrder)ViewData["SortOrder"];
+    }
+    else
+    {
+        sortOrder = ProductSortOrder.Default;
+    }
+}
+
+<div id="filter-options">
+    <h3>Refine By</h3>
+    <p>Price</p>
+    <ul>
+        <li><a asp-controller="@controller" asp-action="@action" asp-route-minPrice="0" asp-route-maxPrice="@decimal.MaxValue" asp-route-minRating="@filter.MinRating" asp-route-category="@filter.Category" asp-route-sortOrder="@sortOrder">Any</a></li>
+        <li><a asp-controller="@controller" asp-action="@action" asp-route-minPrice="0" asp-route-maxPrice="25" asp-route-minRating="@filter.MinRating" asp-route-category="@filter.Category" asp-route-sortOrder="@sortOrder">Under $25</a></li>
+        <li><a asp-controller="@controller" asp-action="@action" asp-route-minPrice="25" asp-route-maxPrice="50" asp-route-minRating="@filter.MinRating" asp-route-category="@filter.Category" asp-route-sortOrder="@sortOrder">$25 to $50</a></li>
+        <li><a asp-controller="@controller" asp-action="@action" asp-route-minPrice="50" asp-route-maxPrice="@decimal.MaxValue" asp-route-minRating="@filter.MinRating" asp-route-category="@filter.Category" asp-route-sortOrder="@sortOrder">$50 & Above</a></li>
+    </ul>
+    <p>Avg. Review</p>
+    <ul>
+        <li><a class="rating" asp-controller="@controller" asp-action="@action" asp-route-minPrice="@filter.MinPrice" asp-route-maxPrice="@filter.MaxPrice" asp-route-minRating="4" asp-route-category="@filter.Category" asp-route-sortOrder="@sortOrder"><span class="filled">&#9734;</span><span class="filled">&#9734;</span><span class="filled">&#9734;</span><span class="filled">&#9734;</span><span>&#9734;</span> & Up</a></li>
+        <li><a class="rating" asp-controller="@controller" asp-action="@action" asp-route-minPrice="@filter.MinPrice" asp-route-maxPrice="@filter.MaxPrice" asp-route-minRating="3" asp-route-category="@filter.Category" asp-route-sortOrder="@sortOrder"><span class="filled">&#9734;</span><span class="filled">&#9734;</span><span class="filled">&#9734;</span><span>&#9734;</span><span>&#9734;</span> & Up</a></li>
+        <li><a class="rating" asp-controller="@controller" asp-action="@action" asp-route-minPrice="@filter.MinPrice" asp-route-maxPrice="@filter.MaxPrice" asp-route-minRating="2" asp-route-category="@filter.Category" asp-route-sortOrder="@sortOrder"><span class="filled">&#9734;</span><span class="filled">&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span> & Up</a></li>
+        <li><a class="rating" asp-controller="@controller" asp-action="@action" asp-route-minPrice="@filter.MinPrice" asp-route-maxPrice="@filter.MaxPrice" asp-route-minRating="1" asp-route-category="@filter.Category" asp-route-sortOrder="@sortOrder"><span class="filled">&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span> & Up</a></li>
+        <li><a class="rating" asp-controller="@controller" asp-action="@action" asp-route-minPrice="@filter.MinPrice" asp-route-maxPrice="@filter.MaxPrice" asp-route-minRating="0" asp-route-category="@filter.Category" asp-route-sortOrder="@sortOrder"><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span> & Up</a></li>
+    </ul>
+    <p>Category</p>
+    <ul>
+        <li><a class="rating" asp-controller="@controller" asp-action="@action" asp-route-minPrice="@filter.MinPrice" asp-route-maxPrice="@filter.MaxPrice" asp-route-minRating="@filter.MinRating" asp-route-category="" asp-route-sortOrder="@sortOrder">All</a></li>
+        <li><a class="rating" asp-controller="@controller" asp-action="@action" asp-route-minPrice="@filter.MinPrice" asp-route-maxPrice="@filter.MaxPrice" asp-route-minRating="@filter.MinRating" asp-route-category="Home" asp-route-sortOrder="@sortOrder">Home</a></li>
+        <li><a class="rating" asp-controller="@controller" asp-action="@action" asp-route-minPrice="@filter.MinPrice" asp-route-maxPrice="@filter.MaxPrice" asp-route-minRating="@filter.MinRating" asp-route-category="Apparel" asp-route-sortOrder="@sortOrder">Apparel</a></li>
+        <li><a class="rating" asp-controller="@controller" asp-action="@action" asp-route-minPrice="@filter.MinPrice" asp-route-maxPrice="@filter.MaxPrice" asp-route-minRating="@filter.MinRating" asp-route-category="Jewelry" asp-route-sortOrder="@sortOrder">Jewelry</a></li>
+        <li><a class="rating" asp-controller="@controller" asp-action="@action" asp-route-minPrice="@filter.MinPrice" asp-route-maxPrice="@filter.MaxPrice" asp-route-minRating="@filter.MinRating" asp-route-category="Garden" asp-route-sortOrder="@sortOrder">Garden</a></li>
+    </ul>
+</div>
