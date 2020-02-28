@@ -1,0 +1,28 @@
+﻿@model Cookie
+@{
+    ViewData["Title"] = "Cookie Info";
+    string message = ViewData["g"].ToString();
+    ViewData["controller"] = "Home";
+    ViewData["action"] = "SnackDetail";
+}
+
+
+<h2>Index</h2>
+<h1>@message</h1>
+
+<p>before partial</p>
+<partial name="_PartialWithData" for="@Model" />
+<p>after partial</p>
+
+<h2>I am eating a @Model.Type cookie. It has @Model.numCalories calories.</h2>
+
+@*
+@section madeby {
+ <h1> Of course Katie made this section, she loves cookies</h1>
+}
+
+*@
+
+@section requiredSection {
+ <p> this is the required section for @message my fav cookie is @Model.Type</p>
+}

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <nav>
+        @{ 
+            string controller = ViewData["controller"].ToString();
+            string action = ViewData["action"].ToString();
+
+        }
+        @*Create a link to myself*@
+        <a asp-controller="@controller" asp-action="@action">A link to myself</a>
+
+        @*HTML heler - old style, Tag helper (above) is the preferred way*@
+        @Html.ActionLink("A link to snickerdoodle", "SnackDetail", "Home", new { name = "Snickerdoodle", numCalories = 250 });
+    </nav>
+    @RenderBody()
+    <p>This is the special section portion</p>
+
+    @RenderSection("madeby", false)  @*leaving off the false as the second parameter defaults to true and makes it required*@
+    @RenderSection("requiredSection") 
+
+    <h2>This is the bottom of the page</h2>
+</body>
+</html>

@@ -1,0 +1,34 @@
+﻿@{
+    var parms = new Dictionary<string, string>
+{
+                { "name", "chocolate Chip" },
+                { "numCalories", "150" }
+            };
+}
+
+@{
+    ViewData["Title"] = "New Posts";
+    ViewData["controller"] = "Home";
+    ViewData["action"] = "Index";
+
+}
+
+
+<h1>Index</h1>
+
+<partial name="_PartialExample" />
+
+<!--I don't think that you have to do this for your homework-->
+<a asp-controller="Home" asp-action="SnackDetail" asp-all-route-data="parms">Cookie</a>
+
+<h1>End of Index Page</h1>
+
+@section madeby{
+    <p>
+        This was created by Tech Elevator students.
+    </p>
+}
+
+@section requiredSection {
+<p> This is the required section for index.chtml</p>
+}
