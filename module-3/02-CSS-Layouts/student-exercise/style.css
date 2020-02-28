@@ -12,3 +12,56 @@ html {
     font-size: 16px;
 }
 
+body{
+    margin: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#te-logo{
+    width: 25%;
+}
+
+#student-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "quote quote picture"
+    "profile profile info"
+    "experience experience experience"
+}
+
+#student-picture{
+    grid-area: picture;
+}
+
+#student-picture > img{
+    border-radius: 175px;;
+}
+
+#student-quote{
+    grid-area: quote;
+}
+
+#student-contact{
+    grid-area: info;
+    text-align: center;
+    font-style: italic;
+    
+}
+
+#student-profile{
+    grid-area: profile;
+}
+
+#experience{
+    grid-area: experience;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#experience div {
+    max-width: 33%;
+}
+
