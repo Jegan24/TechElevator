@@ -1,0 +1,13 @@
+﻿@model CalculatorModel
+
+@*step 5 - create a view for the calculator result*@
+@{
+    ViewData["Title"] = "Calc Result";
+}
+
+<h2>Result</h2>
+
+<p> You selected to convert @Model.NumberToConvert @Model.StartingUnit to @Model.EndingUnit</p>
+
+<p> Your results are @Model.GetConvertedValue() @Model.EndingUnit</p>
+

@@ -1,0 +1,38 @@
+﻿@model CalculatorModel
+
+@* step 2. Create the view called Index*@
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+@* step 3 create a form*@
+<form asp-controller="calculators" asp-action="result" method="get">
+    <div>
+        <label asp-for="NumberToConvert"></label>
+        <input type="number" asp-for="NumberToConvert" />
+    </div>
+
+    <div>
+        <label asp-for="StartingUnit"></label>
+        <select asp-for="StartingUnit" asp-items="CalculatorModel.Units"></select>
+    </div>
+
+    <div>
+        <label asp-for="EndingUnit"></label>
+        <select asp-for="EndingUnit" asp-items="CalculatorModel.Units"></select>
+    </div>
+
+    <!-- dates are cool
+    <div>
+        <label asp-for="DT">
+        </label>
+        <input type="datetime-local" asp-for="DT" />
+    </div>
+        -->
+
+    <div>
+        <input type="submit" value="Calc" />
+    </div>
+</form>

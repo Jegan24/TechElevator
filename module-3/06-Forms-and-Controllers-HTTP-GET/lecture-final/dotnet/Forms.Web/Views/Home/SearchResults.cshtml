@@ -1,0 +1,30 @@
+﻿@model CitySearchModel
+@{
+    ViewData["Title"] = "SearchResults";
+}
+
+<h2>SearchResults</h2>
+
+<h1> You have searched for cities in country @Model.CountryCode  and district @Model.District</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>District</th>
+            <th>Population</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var city in Model.Results)
+        {
+            <tr>
+                <td>@city.CityId</td>
+                <td>@city.Name</td>
+                <td>@city.District</td>
+                <td>@city.Population.ToString("N0")</td>
+            </tr>
+        }
+    </tbody>
+</table>
