@@ -1,0 +1,44 @@
+﻿@*Step 6 is the add the model to the top and then display all the products*@
+@model IList<Product>
+
+@* Step 2*@
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<style>
+    td {
+        width: 200px;
+    }
+
+
+</style>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Cost</th>
+
+    </tr>
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.Id</td>
+            <td>@product.Name</td>
+            <td>@product.Cost.ToString("C")</td>
+            @*Step 7*@
+            <td>
+                <form asp-action="AddToCart" asp-controller="Store" method="post">
+                    @*create a hidden input field to store the product id in our form*@
+                    <input type="hidden" asp-for="@product.Id" />
+                    <input type="hidden" name="quantity" value="1" />
+                   <button>Add to Cart</button>
+                </form>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,45 @@
+﻿@*step 10 view cart - shell*@
+@* step 11 make view cart show the items*@
+@model ShoppingCart
+
+@{
+    ViewData["Title"] = "ViewCart";
+}
+
+<h2>Here is your shopping cart</h2>
+
+<h1>@TempData["msg"]</h1>
+<table class="table table-striped">
+    <tr>
+        <th>Item</th>
+        <th>Cost</th>
+        <th>Qt.</th>
+        <th>Subtotal</th>
+        <th></th>
+    </tr>
+
+    @* Loop through the items in the cart*@
+    @foreach(var item in Model.Items)
+    {
+        <tr>
+            <td>@item.Product.Name</td>
+            <td>@item.Product.Cost.ToString("C")</td>
+            <td>@item.Quantity</td>
+            <td>@( (item.Product.Cost  * item.Quantity).ToString("C"))</td>
+            @*Step 13 add the remove button*@
+            <td>
+                <form asp-action="RemoveFromCart" asp-controller="Store" method="post">
+                    <input type="hidden" value="@item.Product.Id" name="id" />
+                    <input type="submit" value="Remove from Cart" />
+                </form>
+            </td>
+        </tr>
+    }
+    @*Step 15 add the grand total to the ViewCart*@
+    <tr>
+        <td colspan="3">Grand Total</td>
+        <td>@Model.GrandTotal.ToString("C")</td>
+        <td></td>
+    </tr>
+
+</table>
