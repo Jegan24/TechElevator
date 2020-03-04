@@ -53,7 +53,7 @@ namespace MVCModels.Web.Models
         /// </summary>
         public string Description { get; set; }
 
-        public string GetTileClass()
+        public string GetSoldOutClass()
         {
             string cssClass = "";
             if(RemainingStock < 1)

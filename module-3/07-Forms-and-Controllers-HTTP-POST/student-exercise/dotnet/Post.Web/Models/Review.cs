@@ -8,6 +8,15 @@ namespace Post.Web.Models
 {
     public class Review
     {
-       
+        public int Id { get; set; }
+        [Display(Name = "Enter your name:")]
+        public string Username { get; set; }
+        [Display(Name = "How many stars:")]
+        public int Rating { get; set; }
+        [Display(Name = "Provide a title")]
+        public string Title { get; set; }
+        [Display(Name = "Review")]
+        public string Text { get; set; }
+        public DateTime Date { get; set; }
     }
 }

@@ -1,6 +1,31 @@
-﻿
+﻿@model IEnumerable<Review>
 @{
     ViewData["Title"] = "Home Page";
 }
 
-
+<h2>Past Reviews</h2>
+<table style="min-width: 100%;" class="table-striped">
+    @{
+        foreach (var review in Model)
+        {
+            <tr>
+                <td>
+                    <div class="review">
+                        <div class="review-title">@review.Title</div>
+                        <div class="review-rating">
+                            @{
+                                for (int i = 1; i <= review.Rating; i++)
+                                {
+                                    <span class="filled">&#9734;</span>
+                                }
+                                                }
+                                            </div>
+                        <div class="review-author">@review.Username on @review.Date.ToShortDateString()</div>
+                        <div class="review-text">@review.Text</div>
+                    </div>
+                </td>
+            </tr>
+        }
+    }
+</table>
+<a asp-action="NewReview" asp-controller="Home" >Submit a new review</a>

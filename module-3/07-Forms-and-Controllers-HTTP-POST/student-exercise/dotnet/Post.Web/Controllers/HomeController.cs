@@ -11,12 +11,30 @@ namespace Post.Web.Controllers
 {
     public class HomeController : Controller
     {
-
+        private IReviewDAO dao;
+        public HomeController(IReviewDAO dAO)
+        {
+            dao = dAO;
+        }
         // GET: Home
         public ActionResult Index()
         {
-            return View();
-        }        
+
+            return View(dao.GetAllReviews());
+        }       
+        public ActionResult NewReview()
+        {
+
+            return View("NewReview");
+        }
+
+        [HttpPost]
+        public ActionResult AddReview(Review review)
+        {
+            dao.SaveReview(review);
+
+            return RedirectToAction("Index");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

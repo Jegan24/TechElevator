@@ -22,7 +22,29 @@ namespace Post.Web.DAL
         /// <returns></returns>
         public IList<Review> GetAllReviews()
         {
-            throw new NotImplementedException();
+            List<Review> reviews = new List<Review>();
+            using(SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string cmdText = "SELECT * FROM reviews";
+                SqlCommand cmd = new SqlCommand(cmdText, connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Review review = new Review();
+
+                    review.Id = (int)reader["review_id"];
+                    review.Username = (string)reader["username"];
+                    review.Rating = (int)reader["rating"];
+                    review.Title = (string)reader["review_title"];
+                    review.Text = (string)reader["review_text"];
+                    review.Date = DateTime.Parse(reader["review_date"].ToString());
+
+                    reviews.Add(review);
+                }
+            }
+
+            return reviews;
         }
 
         /// <summary>
@@ -32,7 +54,21 @@ namespace Post.Web.DAL
         /// <returns></returns>
         public int SaveReview(Review newReview)
         {
-            throw new NotImplementedException();
+            int newId = 0;
+            using(SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string cmdText = "INSERT INTO reviews (username,rating,review_title,review_text,review_date)";
+                cmdText += " VALUES (@username,@rating, @title, @text, GETDATE())";
+                SqlCommand cmd = new SqlCommand(cmdText, connection);
+                cmd.Parameters.AddWithValue("@username", newReview.Username);
+                cmd.Parameters.AddWithValue("@rating", newReview.Rating);
+                cmd.Parameters.AddWithValue("@title", newReview.Title);
+                cmd.Parameters.AddWithValue("@text", newReview.Text);
+
+                newId = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            return newId;
         }
     }
 }

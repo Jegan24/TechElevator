@@ -40,7 +40,7 @@
                  when you load the page up. -->
             @foreach (Product product in Model)
             {
-            <div class="tile @product.GetTileClass()">
+            <div class="tile @product.GetSoldOutClass()">
                 @{
                     if (product.IsTopSeller)
                     {

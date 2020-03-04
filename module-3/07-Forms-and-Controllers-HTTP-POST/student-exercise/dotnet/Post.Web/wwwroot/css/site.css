@@ -35,3 +35,36 @@ body {
         display: none;
     }
 }
+
+.review {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-areas: "title rating" "author ." "text text";
+    box-shadow: 3px 3px 3px 3px;
+    grid-gap: 1em;
+    min-width: 100%;
+    margin: 5px;
+}
+
+.review-title {
+    grid-area: title;
+}
+
+.review-rating {
+    grid-area: rating;
+}
+
+.review-author {
+    grid-area: author;
+}
+
+.review-text{
+    grid-area: text;
+}
+
+.filled:before {
+    content: "\2605";
+    color: #FFC000;
+    position: absolute;
+}
