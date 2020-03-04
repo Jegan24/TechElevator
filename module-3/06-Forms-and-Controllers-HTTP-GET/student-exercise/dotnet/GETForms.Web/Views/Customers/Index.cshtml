@@ -1,0 +1,35 @@
+﻿@model CustomerSearchModel
+@{
+    ViewData["Title"] = "Customer Search";
+}
+
+<h2>Customer Search</h2>
+<form asp-controller="Customers" asp-action="SearchResult" method="get">
+    <label asp-for="Search"></label>
+    <input type="text" asp-for="Search" />
+    <label asp-for="SortBy"></label>
+    <select asp-for="SortBy" asp-items="CustomerSearchModel.SortOptions"></select>
+    <input type="submit" value="Search" />
+</form>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Active</th>
+    </tr>
+
+    @{
+        if (Model.Customers != null)
+        {
+            foreach (var customer in Model.Customers)
+            {
+                <tr>
+                    <td>@customer.FullName</td>
+                    <td>@customer.Email</td>
+                    <td>@customer.IsActive</td>
+                </tr>
+            }
+        }
+    }
+</table>

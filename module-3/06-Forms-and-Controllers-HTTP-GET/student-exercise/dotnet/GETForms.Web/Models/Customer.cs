@@ -17,6 +17,14 @@ namespace GETForms.Web.Models
         /// </summary>
         public string LastName { get; set; }
 
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
+
         /// <summary>
         /// The customer's email
         /// </summary>

@@ -1,0 +1,30 @@
+﻿@model ActorSearchModel
+@{
+    ViewData["Title"] = "Actor Search";
+}
+
+<h2>ActorSearch</h2>
+
+<form asp-controller="Actors" asp-action="SearchResults" method="get">
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName" placeholder="e.g Pitt" />
+
+    <input type="submit" value="Search" />
+</form>
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+    </tr>
+    @{
+        if (Model.Actors != null)
+        {
+            foreach (var actor in Model.Actors)
+            {
+                <tr><td>@actor.FirstName @actor.LastName</td></tr>
+            }
+        }
+    }
+</table>
+

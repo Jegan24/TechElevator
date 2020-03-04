@@ -1,0 +1,43 @@
+﻿@model FilmSearchModel
+@{
+    ViewData["Title"] = "Film Search";
+}
+
+<h2>Film Search</h2>
+
+<form asp-controller="Films" asp-action="SearchResult" method="get">
+    <label asp-for="MinimumLength"></label>
+    <input type="number" asp-for="MinimumLength" />
+
+    <label asp-for="MaximumLength"></label>
+    <input type="number" asp-for="MaximumLength" />
+
+    <select asp-for="Genre" asp-items="Model.Genres"></select>
+    <input type="submit" value="Search" />
+</form>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Release Year</th>
+        <th>Length</th>
+        <th>Rating</th>
+    </tr>
+
+    @{ 
+        if(Model.Films != null)
+        {
+            foreach(var film in Model.Films)
+            {
+                <tr>
+                    <td>@film.Title</td>
+                    <td>@film.Description</td>
+                    <td>@film.ReleaseYear</td>
+                    <td>@film.Length</td>
+                    <td>@film.Rating</td>
+                </tr>
+            }
+        }
+    }
+</table>
