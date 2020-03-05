@@ -6,9 +6,10 @@
 <h2>New Book Review</h2>
 
 <form asp-controller="Home" asp-action="AddReview" method="post">
-    <label asp-for="Username"></label><input type="text" asp-for="Username" />
-    <label asp-for="Rating"></label><input type="range" min="0" max="5" asp-for="Rating" />
-    <label asp-for="Title"></label><input type="text" asp-for="Title" />
-    <label asp-for="Text"></label><textarea asp-for="Text"></textarea>
-    <input type="submit" value="Submit" />
+    <div><label asp-for="Username"></label><input type="text" asp-for="Username" class="circle" /><span asp-validation-for="Username"></span></div>
+    <div><label asp-for="Rating"></label><input type="number" min="0" max="5" asp-for="Rating" class="circle" /><span asp-validation-for="Rating"></span></div>
+    <div><label asp-for="Title"></label><input type="text" asp-for="Title" class="circle" /><span asp-validation-for="Title"></span></div>
+    <div><label asp-for="Text"></label><textarea asp-for="Text" class="circle"></textarea><span asp-validation-for="Text"></span></div>
+    <iframe width="10" height="315" src="https://www.youtube.com/embed/3q7oJuyy5Ac?controls=0&autoplay=1&cc_load_policy=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <input type="submit" value="Submit" class="circle" />
 </form>

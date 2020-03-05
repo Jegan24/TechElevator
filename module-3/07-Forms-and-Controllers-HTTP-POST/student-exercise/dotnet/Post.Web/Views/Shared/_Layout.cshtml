@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
-<html>
+<html style="        cursor: not-allowed;
+        background-image: url(https://gettwobirdsstonedatonce.files.wordpress.com/2012/06/squirrel-gang.jpg); background-blend-mode: hard-light;">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,8 +16,221 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+    <script>
+        Math.Vector = function (x, y) {
+            this.x = x;
+            this.y = y;
+        }
+        Math.Vector.prototype = {
+            clone: function () {
+                return new Math.Vector(this.x, this.y);
+            },
+            negate: function () {
+                this.x = -this.x;
+                this.y = -this.y;
+                return this;
+            },
+            neg: function () {
+                return this.clone().negate();
+            },
+            addeq: function (v) {
+                this.x += v.x;
+                this.y += v.y;
+                return this;
+            },
+            subeq: function (v) {
+                return this.addeq(v.neg());
+            },
+            add: function (v) {
+                return this.clone().addeq(v);
+            },
+            sub: function (v) {
+                return this.clone().subeq(v);
+            },
+            multeq: function (c) {
+                this.x *= c;
+                this.y *= c;
+                return this;
+            },
+            diveq: function (c) {
+                this.x /= c;
+                this.y /= c;
+                return this;
+            },
+            mult: function (c) {
+                return this.clone().multeq(c);
+            },
+            div: function (c) {
+                return this.clone().diveq(c);
+            },
+
+            dot: function (v) {
+                return this.x * v.x + this.y * v.y;
+            },
+            length: function () {
+                return Math.sqrt(this.dot(this));
+            },
+            normal: function () {
+                return this.clone().diveq(this.length());
+            }
+        };
+
+        function evade(evt) {
+            var $this = $(this),
+                corner = $this.offset(),
+                center = { x: corner.left + $this.outerWidth() / 2, y: corner.top + $this.outerHeight() / 2 },
+                dist = new Math.Vector(center.x - evt.pageX, center.y - evt.pageY),
+                closest = $this.outerWidth() / 2;
+
+            // proximity test
+            if (dist.length() >= closest) {
+                return;
+            }
+
+            // calculate new position
+            var delta = dist.normal().multeq(closest).sub(dist),
+                newCorner = { left: corner.left + delta.x, top: corner.top + delta.y };
+
+            // bounds check
+            var padding = parseInt($this.css('padding-left'));
+            if (newCorner.left < -padding) {
+                newCorner.left = -padding;
+            } else if (newCorner.left + $this.outerWidth() - padding > $(document).width()) {
+                newCorner.left = $(document).width() - $this.outerWidth() + padding;
+            }
+            if (newCorner.top < -padding) {
+                newCorner.top = -padding;
+            } else if (newCorner.top + $this.outerHeight() - padding > $(document).height()) {
+                newCorner.top = $(document).height() - $this.outerHeight() + padding;
+            }
+
+            // move bumper
+            $this.offset(newCorner);
+
+            $(document.body).css("height", $(document).outerHeight());
+            $(document.body).css("width", $(document).outerWidth());
+        }
+
+        function beginEvade() {
+            $(this).bind('mousemove', evade);
+        }
+
+        function endEvade() {
+            $(this).unbind('mousemove', evade);
+        }
+
+
+        $(function () {
+            $('.circle').wrap('<span class="bumper" />')
+
+            $('.bumper').bind('mouseover', beginEvade);
+            $('.bumper').bind('mouseout', endEvade);
+        });
+
+        function clickHandler(e) {
+            e.preventDefault();
+            alert('🚫🐁🚫Mice are forbidden! Your tails are inferior🚫🐁🚫\nThis message was brought to you by 🐿️🐿️Squirrel Gang🐿️🐿️');
+            return false;
+        }
+
+        $(document).ready(function () {
+            //document.addEventListener("keyup", clickHandler, true);
+            document.addEventListener("mousedown", clickHandler, true);
+            document.addEventListener("mousemove", mouseMoveHandler, true);
+            document.addEventListener("keyup", keyupHandler, true);
+            randomizeColors();
+            
+        });
+        var count = 1;
+        var marginSize = count;
+        var marginIncrease = true;
+        function mouseMoveHandler(e) {
+            if (count % 5 == 0) {
+                randomizeColors();
+            }
+            var reviews = $('.review');
+            for (var i = 0; i < reviews.length; i++) {
+                $(reviews[i]).css("margin", marginSize + "px");
+            }
+            if (marginSize == 100) {
+                marginIncrease = false;
+            }
+            else if(marginSize == 0) {
+                marginIncrease = true;
+            }
+            if (marginIncrease) {
+                marginSize++;
+            }
+            else {
+                marginSize--;
+            }
+            var magicNumber = Math.round(Math.random() * 1000);
+            if ((e.pageX == magicNumber || e.pageY == magicNumber)) {
+                rickRoll();
+                alert('Nice, you found a magic pixel.');
+            }
+            console.log('x: ' + e.pageX + '| y: ' + e.pageY + "| " + magicNumber);
+            count++;
+        }
+
+        function keyupHandler(e) {
+            if (confirm("Are you sure?")) {
+                return true;
+            }
+            else {
+                var elem = e.srcElement;
+                if (elem.tagName == "TEXTAREA" ||(elem.tagName == "INPUT")) {
+                    elem.value = "";
+                }
+                e.preventDefault();
+                return false;
+            }
+        }
+
+        function randomizeColors() {
+            var all = document.getElementsByTagName('*');
+            for (var i = -1, l = all.length; ++i < l;) {
+                if (!(all[i].classList.contains("filled"))) {
+                    setRandomColor(all[i]);
+                }                
+            }
+        }
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function setRandomColor(e) {   
+            //var randColor = getRandomColor();
+            //var randTextShadow = getRandomColor();            
+            //$(e).animate({
+            //    color: randColor/*,
+            //    textshadow: randTextShadow */
+            //}, 1000, false);
+
+            $(e).css("font-size", "xx-large");
+            $(e).css("color", getRandomColor());
+            $(e).css("text-shadow", "2px 2px " + getRandomColor());
+        }
+
+        function rickRoll() {
+            var html = '<iframe width="1" height="1" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&autoplay=1&cc_load_policy=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            var vid = document.createElement('div');
+            vid.innerHTML = html;
+            $(vid).css("visibility", "hidden");            
+            document.body.appendChild(vid);
+        }
+
+    </script>
 </head>
-<body>
+<body style="background-image: url(https://gettwobirdsstonedatonce.files.wordpress.com/2012/06/squirrel-gang.jpg); background-blend-mode: hard-light;">
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">

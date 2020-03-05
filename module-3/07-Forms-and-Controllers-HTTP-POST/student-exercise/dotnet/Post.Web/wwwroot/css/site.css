@@ -42,9 +42,11 @@ body {
     grid-template-rows: 1fr 1fr 2fr;
     grid-template-areas: "title rating" "author ." "text text";
     box-shadow: 3px 3px 3px 3px;
-    grid-gap: 1em;
+    grid-gap: 5px;
     min-width: 100%;
     margin: 5px;
+    background-image: url(/images/forDummies.png);
+    background-size: contain;
 }
 
 .review-title {
@@ -63,8 +65,22 @@ body {
     grid-area: text;
 }
 
+.filled {
+    color: unset;
+    text-shadow: unset;
+}
+
 .filled:before {
     content: "\2605";
     color: #FFC000;
     position: absolute;
+}
+
+.bumper {
+    /*position: absolute;
+    top: 75px;
+    left: 200px;*/
+    padding: 32px;
+    overflow: auto;
+    /*outline: 1px solid red;*/
 }

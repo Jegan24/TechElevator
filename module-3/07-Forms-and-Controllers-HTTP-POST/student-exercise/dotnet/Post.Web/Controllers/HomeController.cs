@@ -31,6 +31,15 @@ namespace Post.Web.Controllers
         [HttpPost]
         public ActionResult AddReview(Review review)
         {
+            if (!ModelState.IsValid)
+            {
+                TempData["msg"] = "TASK FAILED SUCCESSFULLY";                
+                return View("NewReview",review);
+            }
+            else
+            {
+                TempData["msg"] = "TASK FAILED UNSUCCESSFULLY";
+            }
             dao.SaveReview(review);
 
             return RedirectToAction("Index");

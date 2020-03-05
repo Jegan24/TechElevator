@@ -4,7 +4,7 @@
 }
 
 <h2>Past Reviews</h2>
-<table style="min-width: 100%;" class="table-striped">
+<table style="min-width: 100%;" >
     @{
         foreach (var review in Model)
         {
@@ -18,8 +18,8 @@
                                 {
                                     <span class="filled">&#9734;</span>
                                 }
-                                                }
-                                            </div>
+                            }
+                        </div>
                         <div class="review-author">@review.Username on @review.Date.ToShortDateString()</div>
                         <div class="review-text">@review.Text</div>
                     </div>
@@ -28,4 +28,4 @@
         }
     }
 </table>
-<a asp-action="NewReview" asp-controller="Home" >Submit a new review</a>
+<a asp-action="NewReview" asp-controller="Home" class="circle" style="font-size: xx-large;">Submit a new review</a>
