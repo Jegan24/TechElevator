@@ -1,0 +1,37 @@
+﻿@model RandomDataValidatorModel
+@{
+    ViewData["Title"] = "RandomDataForm";
+}
+
+<h2>RandomDataForm</h2>
+
+<form asp-controller="Home" asp-action="RandomDataForm" method="post">
+    <label asp-for="RequiredStringOfLengthBetween5And10"></label>
+    <input asp-for="RequiredStringOfLengthBetween5And10" />
+    <span asp-validation-for="RequiredStringOfLengthBetween5And10"></span>
+    </br>
+
+    <label asp-for="InRange5To10"></label>
+    <input asp-for="InRange5To10" />
+    <span asp-validation-for="InRange5To10"></span>
+    </br>
+
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+    <span asp-validation-for="Email"></span>
+    </br>
+    <label asp-for="Password"></label>
+    <input asp-for="Password" />
+    <span asp-validation-for="Password"></span>
+    </br>
+    <label asp-for="PasswordMatcher"></label>
+    <input asp-for="PasswordMatcher" />
+    <span asp-validation-for="PasswordMatcher"></span>
+    </br>
+    <label asp-for="date"></label>
+    <input asp-for="date" />
+    <span asp-validation-for="date"></span>
+
+    <input type="submit" value="Validate" />
+</form>
+
