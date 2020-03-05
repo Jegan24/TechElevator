@@ -15,21 +15,20 @@ namespace Validation.Web.Controllers
             return View();
         }
 
-        public IActionResult About()
+        [HttpPost]
+        public IActionResult Login(LoginViewModel model)
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("LoginSuccess");
+            }
+            else
+            {
+                return View("Index", model);
+            }
         }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
+        public IActionResult LoginSuccess()
         {
             return View();
         }
