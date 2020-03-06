@@ -1,0 +1,54 @@
+﻿@model CitySearch
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+@*2. Create a view to display the empty form. *@
+
+
+@*3. Add a blank form with a button that the user can click to go to the
+    searchresult page. *@
+<form method="get" asp-controller="day1" asp-action="searchresult">
+
+    @*8. Display the search properties as input fields. *@
+    <label asp-for="CountryCode"></label>
+    <input asp-for="CountryCode" />
+
+    <label asp-for="District"></label>
+    <input asp-for="District" />
+
+    <input type="submit" value="Submit" />
+</form>
+
+
+@if (Model.Results != null)
+{
+<h2>SearchResult</h2>
+    @*5. Display the search result page. *@
+
+    <p>You search for cities in @Model.CountryCode in the district of @(Model.District). There are @Model.Results.Count results that came back.</p>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>District</td>
+                <td>Population</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var city in Model.Results)
+            {
+                <tr>
+                    <td>@city.CityId</td>
+                    <td>@city.Name</td>
+                    <td>@city.District</td>
+                    <td>@city.Population</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

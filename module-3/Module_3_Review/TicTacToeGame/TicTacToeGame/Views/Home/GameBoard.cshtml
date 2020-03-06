@@ -1,0 +1,19 @@
+﻿@model TicTacToeBoard
+@{
+    ViewData["Title"] = "GameBoard";
+    string name = ViewData["name"].ToString();
+}
+
+<h1>Hello, @name. Are you ready to lose to the masterful AI of the .NET class?!?</h1>
+
+@for (int i = 0; i < 9; i++)
+{
+    <form asp-controller="Home" asp-action="MakePlay" method="post" style="display:inline">
+        <input type="hidden" value="@i" name="index" />
+        <input type="submit" value="@Model.Squares[i]" />
+    </form>
+    @if( (i+1) % 3 == 0)
+    {
+        <br/>
+    }
+}

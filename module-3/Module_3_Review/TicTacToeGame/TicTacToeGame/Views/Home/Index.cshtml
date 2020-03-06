@@ -1,0 +1,19 @@
+﻿@model UserInfo
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form asp-controller="Home" asp-action="RegisterUser" method="post">
+    <div>
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" />
+    </div>
+    <div>
+        <label asp-for="NumberOfRounds"></label>
+        <input asp-for="NumberOfRounds" />
+        <span asp-validation-for="NumberOfRounds"></span>
+    </div>
+
+    <input type="submit" value="Let's Play!" />
+
+</form>
