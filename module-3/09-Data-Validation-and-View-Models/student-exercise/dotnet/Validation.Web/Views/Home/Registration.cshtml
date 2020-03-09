@@ -1,0 +1,17 @@
+﻿@model RegistrationViewModel
+@{
+    ViewData["Title"] = "Registration";
+}
+
+<h2>Registration</h2>
+<form method="post" asp-controller="Home" asp-action="Register" asp-antiforgery="true">
+    <label asp-for="FirstName"></label><input asp-for="FirstName" /><span asp-validation-for="FirstName"></span><br />
+    <label asp-for="LastName"></label><input asp-for="LastName" /><span asp-validation-for="LastName"></span><br />
+    <label asp-for="Email"></label><input asp-for="Email" type="email" /><span asp-validation-for="Email"></span>
+    <label asp-for="ConfirmationEmail"></label><input asp-for="ConfirmationEmail" type="email" /><span asp-validation-for="ConfirmationEmail"></span><br />
+    <label asp-for="Password"></label><input asp-for="Password" type="password" /><span asp-validation-for="Password"></span>
+    <label asp-for="ConfirmationPassword"></label><input asp-for="ConfirmationPassword" type="password" /><span asp-validation-for="ConfirmationPassword"></span><br />
+    <label asp-for="Birthday"></label><input asp-for="Birthday" type="date" /><span asp-validation-for="Birthday"></span><br />
+    <label asp-for="NumberOfTickets"></label><input asp-for="NumberOfTickets" type="number" min="0" /><span asp-validation-for="NumberOfTickets"></span><br />
+    <input type="submit" value="Submit" />
+</form>

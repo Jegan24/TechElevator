@@ -33,6 +33,42 @@ namespace Validation.Web.Controllers
             return View();
         }
 
+        public IActionResult Registration()
+        {
+            return View("Registration");
+        }
+
+        public IActionResult RegistrationSuccessful()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(RegistrationViewModel model)
+        {
+            if(model.Email != model.ConfirmationEmail)
+            {
+                ModelState.AddModelError("ConfirmationEmail", "Email addresses do not match");
+            }
+            if(model.Password != model.ConfirmationPassword)
+            {
+                ModelState.AddModelError("ConfirmationPassword", "Passwords do not match");
+            }
+            if(model.Birthday.AddYears(13) > DateTime.Now)
+            {
+                ModelState.AddModelError("Birthday", "You must be at least 13 years old to register");
+            }
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("RegistrationSuccessful");
+            }
+            else
+            {
+                return View("Registration", model);
+            }            
+        }
+        
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
