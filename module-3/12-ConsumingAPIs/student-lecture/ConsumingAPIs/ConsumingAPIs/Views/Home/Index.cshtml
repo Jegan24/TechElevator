@@ -1,0 +1,23 @@
+﻿@model Fact[];
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+</div>
+
+@{foreach (Fact factoid in Model)
+    {
+
+        <div>
+            <h2>@factoid.text</h2>
+            @{if (factoid.user != null && factoid.user.name != null && factoid.user.name.first != null)
+                {
+                    <h3>This fact brought to you by @factoid.user.name.first</h3>
+                }
+            }
+        </div>
+    }
+}

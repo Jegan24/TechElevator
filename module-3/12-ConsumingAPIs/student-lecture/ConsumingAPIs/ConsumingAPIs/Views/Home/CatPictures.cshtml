@@ -1,0 +1,19 @@
+﻿@model SearchImageViewModel
+@{
+    ViewData["Title"] = "CatPictures";
+
+}
+
+<h1>CatPictures</h1>
+
+
+<form asp-controller="Home" asp-action="CatPictures" method="get">
+    <span>I want to see cats in </span>
+    <select asp-for="SelectedValue" asp-items="Model.ImageCategories">
+        <option value="">Choose a category</option>
+    </select>
+    <input type="submit" value="NOW!"/>
+</form>
+
+<img src="@ViewData["image"]" />
+
