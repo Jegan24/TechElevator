@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "2757dc52-5023-4c12-96fd-0c379c648058",
+		"name": "C#_API_Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f0efd60f-0001-4c21-ac59-64bd90773d1c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"let item_count =  pm.response.json().length;",
+							"pm.globals.set(\"item_count\", item_count);",
+							"",
+							"",
+							"pm.test(\"Grocery List should have at least 1 item\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(item_count).to.be.above(0);",
+							"});",
+							"",
+							"pm.test(\"Response includes 'id', 'name', and 'completed'\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"id\");",
+							"    pm.expect(pm.response.text()).to.include(\"name\");",
+							"    pm.expect(pm.response.text()).to.include(\"completed\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44322/api/groceries",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"groceries"
+					]
+				},
+				"description": "t"
+			},
+			"response": []
+		},
+		{
+			"name": "Insert An Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae21d718-90a1-4584-a6e5-8d3672085e35",
+						"exec": [
+							"pm.test(\"Status code is 201 or 204\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,204]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        \"id\": 2222,\r\n        \"name\": \"Chocolate Milk\",\r\n        \"completed\": false\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44322/api/groceries",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"groceries"
+					]
+				},
+				"description": "create new item"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Items After Insert",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f0efd60f-0001-4c21-ac59-64bd90773d1c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Item Count Increased After Insert\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(pm.globals.get(\"item_count\") + 1);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44322/api/groceries",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"groceries"
+					]
+				},
+				"description": "t"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Inserted Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a906058-16c4-4b10-9f30-cdc66f9ef00a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check for updated value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[\"completed\"]).to.eql(false);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44322/api/groceries/2222",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"groceries",
+						"2222"
+					]
+				},
+				"description": "Get Single Item"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Inserted Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "72b5ec65-42c4-4313-8d19-92f6675aff7d",
+						"exec": [
+							"pm.test(\"Status code is 201 or 204\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,204]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        \"id\": 2222,\r\n        \"name\": \"Soy Milk\",\r\n        \"completed\": true\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44322/api/groceries/2222",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"groceries",
+						"2222"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Item After Update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a906058-16c4-4b10-9f30-cdc66f9ef00a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check for updated value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[\"completed\"]).to.eql(true);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44322/api/groceries/2222",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"groceries",
+						"2222"
+					]
+				},
+				"description": "Get Single Item"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb6adfa9-b5bf-4728-b388-884aebb3bec2",
+						"exec": [
+							"pm.test(\"Status code is 201 or 204\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,204]);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44322/api/groceries/2222",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"groceries",
+						"2222"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Items After Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f0efd60f-0001-4c21-ac59-64bd90773d1c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Item Count Decreased After Delete\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(pm.globals.get(\"item_count\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44322/api/groceries",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"groceries"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c2bb638c-c87b-4ad0-8d60-48e851309a02",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6dce31cf-2d1f-4613-9185-d733b9dab383",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
