@@ -5,7 +5,9 @@
  *
  * @returns {number} 1
  */
-
+function turnOn(){
+  return 1;
+}
 /**
  * Create a function called returnsName.
  *
@@ -13,7 +15,9 @@
  *
  * @returns {string} your name
  */
-
+function returnsName(){
+  return "Jack";
+}
 /**
  * Create a function called returnGivenParameter that takes a
  * single parameter and then returns it.
@@ -21,7 +25,9 @@
  * @param {any} thing any value
  * @returns {any} the parameter that we were given
  */
-
+function returnGivenParameter(p){
+  return p;
+}
 /**
  * Now create a function called takeOptionalParameter
  * that takes a single parameter and
