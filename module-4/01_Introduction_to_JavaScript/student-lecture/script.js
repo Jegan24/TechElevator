@@ -10,8 +10,15 @@
  */
 function variables() {
   // Declares a variable where the value cannot be changed
+  const stonks = "not stonks";
+
   // Declares a variable those value can be changed
+  let isStonks = stonks;
+
   // Declares a variable that will always be an array
+  let myStonks = ["STONKS UP","STONKS DOWN"];
+
+  console.log(`How are stonks? ${stonks}`);
 }
 
 /**
@@ -74,10 +81,12 @@ function objects() {
   };
 
   // Log the object
-
+  console.log(person);
   // Log the first and last name
+  console.log(`${person.firstName} ${person.lastName}`);
 
   // Log each employee
+  console.table(person.employees);
 }
 
 /*

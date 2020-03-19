@@ -11,7 +11,33 @@
 		iqTest("") → 0 // there are no numbers in the given set
         iqTest("2 2 4 6") → 0 // all numbers are even, therefore there is no position of an odd number
 */
-
+function iqTest(s) {
+    let splitArray = s.split(" ");
+    let firstEvenIndex = -1;
+    let firstOddIndex = -1;
+    let evenCount = 0;
+    let oddCount = 0;
+    let weirdIndex = 0;
+    for (let i = 0; i < splitArray.length; i++) {
+        if (splitArray[i] % 2 == 0) {
+            if (firstEvenIndex == -1) {
+                firstEvenIndex = i;
+            }
+            evenCount++;
+        }
+        else {
+            if (firstOddIndex == -1) {
+                firstOddIndex = i;
+            }
+            oddCount++;
+        }
+    }
+    if (oddCount != 0 || evenCount != 0) {
+        weirdIndex = evenCount > oddCount ? firstOddIndex : firstEvenIndex;
+        weirdIndex++;
+    }
+    return weirdIndex;
+}
 /*
 2. **titleCase** Write a function that will convert a string into title case, given an optional 
     list of exceptions (minor words). The list of minor words will be given as a string with each 
@@ -28,3 +54,39 @@ argument is unused.
 		titleCase('THE WIND IN THE WILLOWS', 'The In') // should return: 'The Wind in the Willows'
         titleCase('the quick brown fox') // should return: 'The Quick Brown Fox'
 */
+
+function titleCase(sentence, excluding) {
+    let splitArray = sentence.split(" ");
+    let excludedWords = (excluding != null) ? arrayToLower(excluding.split(" ")) : null;
+    let titleCaseSentence = "";
+    for (let i = 0; i < splitArray.length; i++) {
+        if (excludedWords != null) {
+            if (excludedWords.includes(splitArray[i].toLowerCase()) && i > 0) {
+                titleCaseSentence += splitArray[i].toLowerCase();
+            }
+            else {
+                titleCaseSentence += toTitleCase(splitArray[i]);
+            }
+        }
+        else {
+            titleCaseSentence += toTitleCase(splitArray[i]);
+        }
+        titleCaseSentence += " ";
+    }
+
+    return titleCaseSentence.trim();
+}
+
+function arrayToLower(arr) {
+    if (arr.length > 0) {
+        for (let i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].toLowerCase();
+        }
+    }
+
+    return arr;
+}
+
+function toTitleCase(s) {
+    return s.length > 0 ? s.charAt(0).toUpperCase() + (s.length > 1 ? s.substring(1).toLowerCase() : "") : "";
+}
