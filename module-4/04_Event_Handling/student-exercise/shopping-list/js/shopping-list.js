@@ -37,5 +37,62 @@ function displayGroceries() {
   });
 }
 
+function attachEvents(){
+  let listItems = document.querySelectorAll("li");
+  document.getElementById("toggleAll").addEventListener("click", function(){toggleAll();})
+  listItems.forEach(item =>{
+    
+    item.addEventListener("click", function() {setCompleted(item)});
+    item.addEventListener("dblclick", function() {setIncomplete(item)});
+  })
+}
+
+function setCompleted(elem){
+  if(!elem.classList.contains("completed")){
+      elem.classList.add("completed");
+      elem.firstElementChild.classList.add("completed")
+  }
+}
+
+function setIncomplete(elem){
+  if(elem.classList.contains("completed")){
+      elem.classList.remove("completed");
+      elem.firstElementChild.classList.remove("completed");
+  }
+}
+
+function toggleElement(elem){
+  if(elem.classList.contains("completed")){
+    elem.classList.remove("completed");
+    elem.firstElementChild.classList.remove("completed");
+  }
+  else{
+    elem.classList.add("completed");
+    elem.firstElementChild.classList.add("completed")
+  }
+}
+
+function toggleAll(){
+  let listItems = document.querySelectorAll("li");
+  let button = document.getElementById("toggleAll");
+  
+
+  if(button.innerText.toLowerCase().includes("incomplete")){
+    button.innerText = 'Mark All Complete';
+    listItems.forEach(item =>{
+      setIncomplete(item);
+    })
+  }
+  else{
+    button.innerText = 'Mark All Incomplete';
+    listItems.forEach(item =>{
+      setCompleted(item);
+    })
+  }
+}
+
 setPageTitle();
 displayGroceries();
+
+attachEvents();
+

@@ -41,6 +41,7 @@
     height: 100%;
 }
 
+
 #main div.review p {
     margin: 20px;
 }
@@ -51,4 +52,24 @@
 
 #main h4 {
     font-size: 1rem;
+}
+
+#newReview div.rating {
+    height: 2rem;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0.5rem;
+}
+
+#newReview div.rating img {
+    height: 100%;
+}
+
+
+.starVisible{
+    opacity: 100;
+}
+
+.starInvisible{
+    opacity: 0;
 }

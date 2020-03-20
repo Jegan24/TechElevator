@@ -151,3 +151,49 @@ setPageTitle();
 setPageDescription();
 // display all of the product reviews on our page
 displayReviews();
+
+
+
+// A $( document ).ready() block.
+$( document ).ready(function() {
+  attachEvents();
+});
+
+function attachEvents(){
+  let stars = getSelectStarElements();
+  let ratingDiv = document.getElementById("ratingPicker");
+  ratingDiv.addEventListener("mouseleave", function(){hideStars()});
+  stars.forEach(star =>{
+    let starRating = star.id.substring(0,1);
+    star.addEventListener("click", function(){ starClick(starRating)});
+    star.addEventListener("mouseenter", function(){showStars(starRating)});    
+  })
+}
+
+function starClick(starRating){
+  document.getElementById("selectedRating").value = starRating * 1;
+  showStars(starRating);
+}
+
+function showStars(starRating){
+  let stars = getSelectStarElements();
+  for(let i = 1; i <= 5; i++ ){
+    let star = document.getElementById(i + "star");
+    if(i <= starRating){
+      star.classList.remove("starInvisible");
+      star.classList.add("starVisible");
+    }
+    else{
+      star.classList.remove("starVisible");
+      star.classList.add("starInvisible");
+    }
+  }
+}
+
+function hideStars(){
+  showStars(document.getElementById("selectedRating").value);
+}
+
+function getSelectStarElements(){
+  return Array.prototype.slice.call(document.getElementsByClassName("selectStar"));
+}
