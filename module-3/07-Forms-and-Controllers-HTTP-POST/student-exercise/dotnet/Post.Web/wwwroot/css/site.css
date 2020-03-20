@@ -61,7 +61,7 @@ body {
     grid-area: author;
 }
 
-.review-text{
+.review-text {
     grid-area: text;
 }
 
@@ -70,11 +70,11 @@ body {
     text-shadow: unset;
 }
 
-.filled:before {
-    content: "\2605";
-    color: #FFC000;
-    position: absolute;
-}
+    .filled:before {
+        content: "\2605";
+        color: #FFC000;
+        position: absolute;
+    }
 
 .bumper {
     /*position: absolute;
@@ -83,4 +83,12 @@ body {
     padding: 32px;
     overflow: auto;
     /*outline: 1px solid red;*/
+}
+
+div {
+    overflow-wrap: break-word;
+}
+
+a {
+    cursor: not-allowed;
 }

@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 using ProductReviewsAPI.Services;
+using ProductReviewsAPI.Models;
 
 namespace ProductReviewsAPI
 {
@@ -46,7 +47,7 @@ namespace ProductReviewsAPI
             // });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton<DataAccessLayer, DataAccessLayer>();
+            services.AddSingleton<IDataAccessLayer<ProductReview>, DataAccessLayer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

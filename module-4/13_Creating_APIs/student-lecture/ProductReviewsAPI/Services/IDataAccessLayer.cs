@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ProductReviewsAPI.Services {
     
-    interface IDataAccessLayer<T> {
+    public interface IDataAccessLayer<T> {
         List<T> GetAll();
         T Get(int id);
         void Add(T t);

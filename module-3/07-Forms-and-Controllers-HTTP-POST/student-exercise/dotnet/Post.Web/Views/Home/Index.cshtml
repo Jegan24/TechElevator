@@ -4,7 +4,7 @@
 }
 
 <h2>Past Reviews</h2>
-<table style="min-width: 100%;" >
+<table id="reviewTable" style="min-width: 100%;" >
     @{
         foreach (var review in Model)
         {
@@ -20,8 +20,8 @@
                                 }
                             }
                         </div>
-                        <div class="review-author">@review.Username on @review.Date.ToShortDateString()</div>
-                        <div class="review-text">@review.Text</div>
+                        <div class="review-author"><p>@review.Username on @review.Date.ToShortDateString()</p></div>
+                        <div class="review-text"><span>@review.Text</span></div>
                     </div>
                 </td>
             </tr>

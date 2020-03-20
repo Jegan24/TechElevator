@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html style="        cursor: not-allowed;
+<html style="cursor: not-allowed;
         background-image: url(https://gettwobirdsstonedatonce.files.wordpress.com/2012/06/squirrel-gang.jpg); background-blend-mode: hard-light;">
 <head>
     <meta charset="utf-8" />
@@ -109,8 +109,7 @@
             // move bumper
             $this.offset(newCorner);
 
-            $(document.body).css("height", $(document).outerHeight());
-            $(document.body).css("width", $(document).outerWidth());
+            fixBackground();
         }
 
         function beginEvade() {
@@ -121,6 +120,10 @@
             $(this).unbind('mousemove', evade);
         }
 
+        function fixBackground() {
+            $(document.body).css("height", $(document).outerHeight());
+            $(document.body).css("width", $(document).outerWidth());
+        }
 
         $(function () {
             $('.circle').wrap('<span class="bumper" />')
@@ -141,7 +144,8 @@
             document.addEventListener("mousemove", mouseMoveHandler, true);
             document.addEventListener("keyup", keyupHandler, true);
             randomizeColors();
-            
+            $("#reviewTable").css("max-width", Math.ceil(window.outerWidth() * .6));
+
         });
         var count = 1;
         var marginSize = count;
@@ -157,7 +161,7 @@
             if (marginSize == 100) {
                 marginIncrease = false;
             }
-            else if(marginSize == 0) {
+            else if (marginSize == 0) {
                 marginIncrease = true;
             }
             if (marginIncrease) {
@@ -166,13 +170,16 @@
             else {
                 marginSize--;
             }
-            var magicNumber = Math.round(Math.random() * 1000);
+
+            var magicNumber = Math.round(Math.random() * $(document).outerHeight() > $(document).outerWidth() ? $(document).outerHeight() : $(document).outerWidth());
+            magicNumber = 1000;
             if ((e.pageX == magicNumber || e.pageY == magicNumber)) {
                 rickRoll();
                 alert('Nice, you found a magic pixel.');
             }
             console.log('x: ' + e.pageX + '| y: ' + e.pageY + "| " + magicNumber);
             count++;
+            fixBackground();
         }
 
         function keyupHandler(e) {
@@ -181,7 +188,7 @@
             }
             else {
                 var elem = e.srcElement;
-                if (elem.tagName == "TEXTAREA" ||(elem.tagName == "INPUT")) {
+                if (elem.tagName == "TEXTAREA" || (elem.tagName == "INPUT")) {
                     elem.value = "";
                 }
                 e.preventDefault();
@@ -194,7 +201,7 @@
             for (var i = -1, l = all.length; ++i < l;) {
                 if (!(all[i].classList.contains("filled"))) {
                     setRandomColor(all[i]);
-                }                
+                }
             }
         }
 
@@ -207,24 +214,24 @@
             return color;
         }
 
-        function setRandomColor(e) {   
+        function setRandomColor(e) {
             //var randColor = getRandomColor();
-            //var randTextShadow = getRandomColor();            
+            //var randTextShadow = getRandomColor();
             //$(e).animate({
             //    color: randColor/*,
             //    textshadow: randTextShadow */
             //}, 1000, false);
-
-            $(e).css("font-size", "xx-large");
+            var fontSize = Math.round(Math.random() * 1) + 30; 
+            $(e).css("font-size", fontSize + "px");
             $(e).css("color", getRandomColor());
             $(e).css("text-shadow", "2px 2px " + getRandomColor());
         }
 
         function rickRoll() {
-            var html = '<iframe width="1" height="1" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&autoplay=1&cc_load_policy=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            var html = '<iframe width="1" height="1" src="https://www.youtube.com/embed/lXMskKTw3Bc?controls=0&autoplay=1&cc_load_policy=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
             var vid = document.createElement('div');
             vid.innerHTML = html;
-            $(vid).css("visibility", "hidden");            
+            $(vid).css("visibility", "hidden");
             document.body.appendChild(vid);
         }
 
@@ -279,7 +286,7 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
+    <iframe id="wii" width="1" height="1" src="https://www.youtube.com/embed/3q7oJuyy5Ac?controls=0&autoplay=1&cc_load_policy=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
