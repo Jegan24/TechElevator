@@ -24,3 +24,7 @@ function displayReviews() {
       console.error('Your browser does not support templates');
     }
 }
+
+
+//Let's have some fun and instead of using fetch to call a json file, let's use a real API
+// https://api.thecatapi.com/v1/images/search?category_ids=15
