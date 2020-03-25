@@ -2,22 +2,7 @@ let display;
 let previous = null;
 let operator = null;
 let operatorClicked = false;
-let calculator;
 
-function getCalculator() {
-  let c =
-  {
-    display: document.getElementById("display"),
-    keys: {
-      operators: Array.prototype.slice.call(document.getElementsByClassName("operator")),
-      numbers: Array.prototype.slice.call(document.getElementsByClassName("number")),
-      decimal: document.getElementsByClassName("decimal")[0],
-      allClear: document.getElementsByClassName("all-clear")[0],
-      equalSign: document.getElementsByClassName("equal-sign")[0]
-    }
-  }
-  return c;
-}
 
 /**
  * Calculates the operation and updates the display.
@@ -89,7 +74,7 @@ function clear() {
 
 // add event listener for when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  calculator = getCalculator();
+  const calculator = getCalculator();
   // set the variable called display equal to the display element
   // HINT: use its id #display to get a reference to it
   display = calculator.display;
@@ -123,3 +108,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+function getCalculator() {
+  const c =
+  {
+    display: document.getElementById("display"),
+    keys: {
+      operators: Array.prototype.slice.call(document.getElementsByClassName("operator")),      
+      numbers: Array.prototype.slice.call(document.getElementsByClassName("number")),
+      decimal: document.getElementsByClassName("decimal")[0],
+      allClear: document.getElementsByClassName("all-clear")[0],
+      equalSign: document.getElementsByClassName("equal-sign")[0]
+    }
+  }
+  return c;
+}

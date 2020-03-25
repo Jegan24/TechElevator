@@ -62,3 +62,24 @@ input[type="checkbox"] {
     vertical-align: middle;
     margin-top:0px;
 }
+
+a.disabled {
+    visibility: hidden;
+}
+
+a.btn {
+    width:250px;
+    margin: 0px auto;
+    display: block;
+    box-sizing: border-box;
+    font-size: 18px;
+    padding:10px;
+    border-radius: 4px;
+    background-color: rgb(131, 210, 255);
+    font-weight:300;
+    color:#FFFFFF;
+    background-color:#5171ff;
+    text-align:center;
+    text-transform: uppercase;
+    text-decoration: none;
+}
