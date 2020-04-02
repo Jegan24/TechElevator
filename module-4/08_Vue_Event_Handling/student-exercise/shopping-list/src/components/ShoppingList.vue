@@ -2,7 +2,8 @@
     <div class="shopping-list">
         <h1>My Shopping List</h1>
         <ul>
-            <li v-for="item in groceries" v-bind:key="item.id" v-bind:class="{ completed: item.completed }">
+            <li v-for="item in groceries" v-bind:key="item.id" v-bind:class="{ completed: item.completed }" v-on:click="handleClick(item.id)" style="cursor: pointer">
+                <input type="checkbox" v-model="item.completed" />
                 {{item.name}} 
                 <i class="far fa-check-circle" v-bind:class="{ completed: item.completed }"></i>
             </li>
@@ -15,20 +16,23 @@ export default {
     data() {
         return {
             groceries: [
-                { name: 'Oatmeal', completed: false },
-                { name: 'Milk', completed: false },
-                { name: 'Banana', completed: false },
-                { name: 'Strawberries', completed: false },
-                { name: 'Lunch Meat', completed: false },
-                { name: 'Bread', completed: false },
-                { name: 'Grapes', completed: false },
-                { name: 'Steak', completed: false },
-                { name: 'Salad', completed: false }
+                { name: 'Oatmeal', completed: false, id: "oatmeal" },
+                { name: 'Milk', completed: false, id: "milk" },
+                { name: 'Banana', completed: false, id: "banana" },
+                { name: 'Strawberries', completed: false, id: "strawberries" },
+                { name: 'Lunch Meat', completed: false, id: "lunch-meat" },
+                { name: 'Bread', completed: false, id: "bread" },
+                { name: 'Grapes', completed: false, id: "grapes" },
+                { name: 'Steak', completed: false, id: "steak" },
+                { name: 'Salad', completed: false, id: "salad" }
             ]
         }
     },
     methods: {
-
+        handleClick(elementId){
+            let groceryItem = this.groceries.find(item =>{return item.id == elementId});
+            groceryItem.completed = !groceryItem.completed;
+        }
     }
 }
 </script>
