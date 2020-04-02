@@ -2,9 +2,16 @@
     <div class="todo-list">
         <h1>{{this.title}}</h1>
         <ul>
-            <li v-for="todo in todos" 
+            <!-- <li v-for="todo in todos" 
                 v-bind:key="todo.id" 
                 v-bind:class="{'todo-completed': todo.completed}" 
+                v-on:click="changeStatus(todo.id, $event)">
+                <input type="checkbox"/>
+                {{todo.task}} <i class="far fa-check-circle" v-bind:class="{completed: todo.completed}"></i>
+            </li> -->
+            <li v-for="todo in filteredTasks"
+                v-bind:key="todo.id"
+                v-bind:class="{'todo-completed': todo.completed}"
                 v-on:click="changeStatus(todo.id, $event)">
                 <input type="checkbox"/>
                 {{todo.task}} <i class="far fa-check-circle" v-bind:class="{completed: todo.completed}"></i>
@@ -30,6 +37,12 @@ export default {
                 const checkbox = event.target.querySelector('input[type="checkbox"]');
                 checkbox.checked = !checkbox.checked;
             }
+        }
+    },
+    computed: {
+        filteredTasks() {
+            const filter = new RegExp(this.search,'i');
+            return this.todos.filter(todo => todo.task.match(filter));
         }
     }
 }

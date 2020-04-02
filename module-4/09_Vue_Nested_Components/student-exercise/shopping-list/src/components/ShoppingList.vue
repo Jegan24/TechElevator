@@ -2,7 +2,7 @@
     <div class="shopping-list">
         <h2>{{title}}</h2>
         <ul>
-            <li v-for="item in data" 
+            <li v-for="item in filteredItems" 
                 v-bind:key="item.id" 
                 v-bind:class="{ completed: item.completed }" 
                 v-on:click="changeStatus(item.id,$event)">
@@ -18,11 +18,15 @@
 export default {
     name: 'shopping-list',
     props: {
-
+        title: String,
+        search: String,
+        items: Array
     },
     data() {
         return {
-            
+            name: "",
+            id: "",
+            completed: false
         }
     },
     methods: {
@@ -38,7 +42,10 @@ export default {
         }
     },
     computed: {
-
+        filteredItems() {
+            const filter = new RegExp(this.search,'i');
+            return this.items.filter(item => item.name.match(filter));
+        }
     }
 }
 </script>
