@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 function onAnchorClick(event) {
-  anchor.removeEventListener("click", onAnchorClick);
+  anchor.classList.add("disabled");  
   loadGroceries();
 }
 
@@ -133,11 +133,15 @@ function loadGroceries() {
       return response.json();
     })
     .then((data) => {
+      anchor.removeEventListener("click", onAnchorClick);
       groceries = data;
       displayGroceries();
-      attachEvents();
-      anchor.classList.add("disabled");
+      attachEvents();      
       document.getElementById("toggleAll").classList.remove("disabled");
+    })
+    .catch((err) =>{
+      anchor.classList.remove("disabled");
+      console.error(err);
     })
 }
 
